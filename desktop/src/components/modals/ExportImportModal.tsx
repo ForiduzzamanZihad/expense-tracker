@@ -121,18 +121,18 @@ export const ExportImportModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm p-4 select-none">
-      <div className="w-full max-w-lg rounded-2xl bg-card-surface border border-theme p-6 space-y-5 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
-        <div className="flex items-center justify-between">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/65 backdrop-blur-md p-4 select-none animate-in fade-in duration-200">
+      <div className="w-full max-w-lg rounded-2xl glass-modal border border-theme p-6 space-y-5 shadow-2xl animate-in zoom-in-95 duration-200">
+        <div className="flex items-center justify-between pb-1 border-b border-theme">
           <h3 className="text-base font-bold text-primary-var flex items-center space-x-2">
             <Database className="w-5 h-5 text-[#EA3B35]" />
-            <span>Data Sync & Export/Import Center</span>
+            <span>Data Sync & Backup Manager</span>
           </h3>
           <button
             onClick={() => setIsExportImportOpen(false)}
-            className="p-1 rounded-lg text-secondary-var hover:text-primary-var hover:bg-sub-surface transition-colors cursor-pointer"
+            className="p-1.5 rounded-xl text-secondary-var hover:text-primary-var glass-btn-secondary transition-colors cursor-pointer"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
@@ -140,8 +140,8 @@ export const ExportImportModal: React.FC = () => {
           <div
             className={`p-3 rounded-xl border text-xs font-semibold flex items-center space-x-2 ${
               statusMessage.type === 'success'
-                ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-500'
-                : 'bg-rose-500/10 border-rose-500/30 text-rose-500'
+                ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-500'
+                : 'bg-rose-500/15 border-rose-500/30 text-rose-500'
             }`}
           >
             {statusMessage.type === 'success' ? <CheckCircle2 className="w-4 h-4" /> : <AlertCircle className="w-4 h-4" />}
@@ -151,7 +151,7 @@ export const ExportImportModal: React.FC = () => {
 
         <div className="space-y-3">
           {/* Card 1: Android <-> Desktop Sync (JSON) */}
-          <div className="p-4 rounded-xl bg-sub-surface border border-theme space-y-3">
+          <div className="p-4 rounded-xl glass-card border border-theme space-y-3">
             <div className="flex items-center justify-between">
               <div>
                 <h4 className="text-sm font-semibold text-primary-var">Full JSON Backup Sync</h4>
@@ -162,7 +162,7 @@ export const ExportImportModal: React.FC = () => {
             <div className="grid grid-cols-2 gap-3 pt-1">
               <button
                 onClick={handleExportJSON}
-                className="py-2.5 px-3 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-500 border border-emerald-500/30 text-xs font-semibold flex items-center justify-center space-x-1.5 transition-colors cursor-pointer"
+                className="py-2.5 px-3 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-500 border border-emerald-500/30 text-xs font-semibold flex items-center justify-center space-x-1.5 transition-colors cursor-pointer"
               >
                 <Download className="w-4 h-4" />
                 <span>Export JSON</span>
@@ -170,7 +170,7 @@ export const ExportImportModal: React.FC = () => {
 
               <button
                 onClick={handleImportJSON}
-                className="py-2.5 px-3 rounded-xl bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-500 border border-indigo-500/30 text-xs font-semibold flex items-center justify-center space-x-1.5 transition-colors cursor-pointer"
+                className="py-2.5 px-3 rounded-xl bg-indigo-500/15 hover:bg-indigo-500/25 text-indigo-500 border border-indigo-500/30 text-xs font-semibold flex items-center justify-center space-x-1.5 transition-colors cursor-pointer"
               >
                 <Upload className="w-4 h-4" />
                 <span>Import JSON</span>
@@ -179,14 +179,14 @@ export const ExportImportModal: React.FC = () => {
           </div>
 
           {/* Card 2: Export CSV Ledger */}
-          <div className="p-4 rounded-xl bg-sub-surface border border-theme flex items-center justify-between">
+          <div className="p-4 rounded-xl glass-card border border-theme flex items-center justify-between">
             <div>
               <h4 className="text-sm font-semibold text-primary-var">CSV Ledger Export</h4>
               <p className="text-xs text-secondary-var">Open transaction logs in Excel or Google Sheets</p>
             </div>
             <button
               onClick={handleExportCSV}
-              className="px-4 py-2 rounded-xl bg-card-surface hover:bg-sub-surface text-primary-var border border-theme text-xs font-semibold flex items-center space-x-1.5 transition-colors cursor-pointer"
+              className="px-4 py-2 rounded-xl glass-btn-secondary text-primary-var text-xs font-semibold flex items-center space-x-1.5 cursor-pointer"
             >
               <FileText className="w-4 h-4 text-purple-500" />
               <span>Export CSV</span>
@@ -194,14 +194,14 @@ export const ExportImportModal: React.FC = () => {
           </div>
 
           {/* Card 3: Generate PDF Report */}
-          <div className="p-4 rounded-xl bg-sub-surface border border-theme flex items-center justify-between">
+          <div className="p-4 rounded-xl glass-card border border-theme flex items-center justify-between">
             <div>
               <h4 className="text-sm font-semibold text-primary-var">PDF Financial Summary Report</h4>
               <p className="text-xs text-secondary-var">Download a formatted PDF statement with totals</p>
             </div>
             <button
               onClick={handleExportPDF}
-              className="px-4 py-2 rounded-xl bg-card-surface hover:bg-sub-surface text-primary-var border border-theme text-xs font-semibold flex items-center space-x-1.5 transition-colors cursor-pointer"
+              className="px-4 py-2 rounded-xl glass-btn-secondary text-primary-var text-xs font-semibold flex items-center space-x-1.5 cursor-pointer"
             >
               <FileText className="w-4 h-4 text-amber-500" />
               <span>Download PDF</span>

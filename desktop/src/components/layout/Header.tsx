@@ -22,10 +22,10 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <header className="h-16 border-b border-theme bg-app-main px-6 flex items-center justify-between select-none">
+    <header className="h-16 border-b border-theme glass-panel px-6 flex items-center justify-between select-none relative z-30">
       {/* Greeting & Avatar */}
       <div className="flex items-center space-x-3">
-        <div className="w-9 h-9 rounded-full bg-[#EA3B35] text-white flex items-center justify-center font-bold text-sm shadow-md shadow-[#EA3B35]/20">
+        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#EA3B35] to-[#d42e28] text-white flex items-center justify-center font-bold text-sm shadow-md shadow-[#EA3B35]/30 ring-2 ring-white/20">
           {userName.charAt(0).toUpperCase()}
         </div>
         <div>
@@ -42,7 +42,7 @@ export const Header: React.FC = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search transactions..."
-          className="w-full bg-card-surface border border-theme rounded-xl pl-10 pr-4 py-2 text-xs text-primary-var placeholder:text-secondary-var focus:outline-none focus:border-[#EA3B35]/60 transition-colors"
+          className="w-full glass-input rounded-xl pl-10 pr-4 py-2 text-xs text-primary-var placeholder:text-secondary-var/60 focus:outline-none"
         />
       </div>
 
@@ -51,10 +51,10 @@ export const Header: React.FC = () => {
         {/* Privacy Masking Toggle */}
         <button
           onClick={toggleHideBalance}
-          className={`p-2.5 rounded-xl border transition-colors flex items-center space-x-1.5 cursor-pointer ${
+          className={`p-2.5 rounded-xl border transition-all cursor-pointer flex items-center space-x-1.5 ${
             settings.hideBalance
-              ? 'bg-amber-500/10 border-amber-500/30 text-amber-500'
-              : 'bg-card-surface border-theme text-secondary-var hover:text-primary-var'
+              ? 'bg-amber-500/15 border-amber-500/30 text-amber-500 shadow-sm'
+              : 'glass-btn-secondary'
           }`}
           title={settings.hideBalance ? 'Show sensitive balances' : 'Hide balances (Privacy Mode)'}
         >
@@ -67,7 +67,7 @@ export const Header: React.FC = () => {
         {/* Sync & Backup Dialog */}
         <button
           onClick={() => setIsExportImportOpen(true)}
-          className="p-2.5 rounded-xl bg-card-surface border border-theme text-secondary-var hover:text-primary-var transition-colors flex items-center space-x-1.5 cursor-pointer"
+          className="p-2.5 rounded-xl glass-btn-secondary flex items-center space-x-1.5 cursor-pointer"
           title="Backup & Data Import/Export"
         >
           <Database className="w-4 h-4 text-[#EA3B35]" />
@@ -78,7 +78,7 @@ export const Header: React.FC = () => {
         {settings.pinLock && (
           <button
             onClick={lockApp}
-            className="p-2.5 rounded-xl bg-card-surface border border-theme text-secondary-var hover:text-primary-var transition-colors cursor-pointer"
+            className="p-2.5 rounded-xl glass-btn-secondary cursor-pointer"
             title="Lock Application"
           >
             <Lock className="w-4 h-4 text-rose-500" />
@@ -88,7 +88,7 @@ export const Header: React.FC = () => {
         {/* Dark/Light Theme Toggle */}
         <button
           onClick={toggleDarkMode}
-          className="p-2.5 rounded-xl bg-card-surface border border-theme text-secondary-var hover:text-primary-var transition-colors cursor-pointer"
+          className="p-2.5 rounded-xl glass-btn-secondary cursor-pointer"
           title={settings.isDarkMode ? 'Switch to Light Theme' : 'Switch to Dark Theme'}
         >
           {settings.isDarkMode ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-indigo-500" />}

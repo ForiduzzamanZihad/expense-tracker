@@ -22,10 +22,45 @@ import androidx.core.view.WindowCompat
 
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.IntentSenderRequest
+import androidx.activity.result.contract.ActivityResultContracts
+import android.util.Log
+import com.neosparkx.expensetracker.update.InAppUpdateManager
+import com.neosparkx.expensetracker.update.UpdateState
+import kotlinx.coroutines.flow.StateFlow
 
 class MainActivity : FragmentActivity() {
+  private lateinit var inAppUpdateManager: InAppUpdateManager
+  private lateinit var updateLauncher: ActivityResultLauncher<IntentSenderRequest>
+
+  val updateState: StateFlow<UpdateState>
+    get() = inAppUpdateManager.updateState
+
+  fun checkAppUpdate(isManual: Boolean = false, onComplete: ((Boolean, String) -> Unit)? = null) {
+    if (::inAppUpdateManager.isInitialized && ::updateLauncher.isInitialized) {
+      inAppUpdateManager.checkForUpdate(this, updateLauncher, isManual, onComplete)
+    }
+  }
+
+  fun completeAppUpdate() {
+    if (::inAppUpdateManager.isInitialized) {
+      inAppUpdateManager.completeUpdate()
+    }
+  }
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+
+    inAppUpdateManager = InAppUpdateManager(this)
+    updateLauncher = registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { result ->
+      if (result.resultCode != RESULT_OK) {
+        Log.w("MainActivity", "Update flow dismissed or failed: ${result.resultCode}")
+      }
+    }
+
+    // Automatic update check on app launch
+    inAppUpdateManager.checkForUpdate(this, updateLauncher)
     
     NotificationHelper.scheduleDailyReminders(this)
 
@@ -58,6 +93,20 @@ class MainActivity : FragmentActivity() {
             AppNavigator(viewModel = viewModel, activity = this)
         }
       }
+    }
+  }
+
+  override fun onResume() {
+    super.onResume()
+    if (::inAppUpdateManager.isInitialized && ::updateLauncher.isInitialized) {
+      inAppUpdateManager.onResume(this, updateLauncher)
+    }
+  }
+
+  override fun onDestroy() {
+    super.onDestroy()
+    if (::inAppUpdateManager.isInitialized) {
+      inAppUpdateManager.onDestroy()
     }
   }
 }

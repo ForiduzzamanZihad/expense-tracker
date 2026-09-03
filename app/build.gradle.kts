@@ -15,8 +15,8 @@ android {
     applicationId = project.findProperty("android.injected.applicationId")?.toString() ?: "com.neosparkx.expensetracker"
     minSdk = 26
     targetSdk = 36
-    versionCode = 2
-    versionName = "2.0.0"
+    versionCode = 3
+    versionName = "3.0.0"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -117,6 +117,10 @@ dependencies {
   implementation(libs.vico.compose.m3)
   implementation(libs.vico.core)
 
+  // Google Play In-App Updates
+  implementation("com.google.android.play:app-update:2.1.0")
+  implementation("com.google.android.play:app-update-ktx:2.1.0")
+
   testImplementation(libs.androidx.compose.ui.test.junit4)
   testImplementation(libs.androidx.core)
   testImplementation(libs.androidx.junit)
@@ -134,9 +138,5 @@ dependencies {
   debugImplementation(libs.androidx.compose.ui.test.manifest)
   debugImplementation(libs.androidx.compose.ui.tooling)
   "ksp"(libs.androidx.room.compiler)
-
-  // Excel Import/Export
-  implementation("org.apache.poi:poi:5.2.3")
-  implementation("org.apache.poi:poi-ooxml:5.2.3")
 }
 

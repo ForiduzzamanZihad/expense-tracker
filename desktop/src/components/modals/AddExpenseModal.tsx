@@ -98,24 +98,24 @@ export const AddExpenseModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm p-4 select-none">
-      <div className="w-full max-w-lg rounded-2xl bg-card-surface border border-theme p-6 space-y-5 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
-        <div className="flex items-center justify-between">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/65 backdrop-blur-md p-4 select-none animate-in fade-in duration-200">
+      <div className="w-full max-w-lg rounded-2xl glass-modal border border-theme p-6 space-y-5 shadow-2xl animate-in zoom-in-95 duration-200">
+        <div className="flex items-center justify-between pb-1 border-b border-theme">
           <h3 className="text-base font-bold text-primary-var flex items-center space-x-2">
             <Plus className="w-5 h-5 text-[#EA3B35]" />
             <span>Log Transaction</span>
           </h3>
           <button
             onClick={() => setIsAddExpenseOpen(false)}
-            className="p-1 rounded-lg text-secondary-var hover:text-primary-var hover:bg-sub-surface transition-colors cursor-pointer"
+            className="p-1.5 rounded-xl text-secondary-var hover:text-primary-var glass-btn-secondary transition-colors cursor-pointer"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Type Selector Toggle */}
-          <div className="grid grid-cols-2 gap-3 p-1 rounded-xl bg-sub-surface border border-theme">
+          <div className="grid grid-cols-2 gap-2.5 p-1 rounded-xl glass-card border border-theme">
             <button
               type="button"
               onClick={() => {
@@ -123,7 +123,7 @@ export const AddExpenseModal: React.FC = () => {
                 setCategory('Food');
               }}
               className={`py-2.5 rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 transition-all cursor-pointer ${
-                type === 'EXPENSE' ? 'bg-[#EA3B35] text-white shadow-md' : 'text-secondary-var hover:text-primary-var'
+                type === 'EXPENSE' ? 'glass-btn-primary' : 'text-secondary-var hover:text-primary-var'
               }`}
             >
               <TrendingDown className="w-4 h-4" />
@@ -137,7 +137,7 @@ export const AddExpenseModal: React.FC = () => {
                 setCategory('Salary');
               }}
               className={`py-2.5 rounded-xl text-xs font-bold flex items-center justify-center space-x-1.5 transition-all cursor-pointer ${
-                type === 'INCOME' ? 'bg-emerald-500 text-white shadow-md' : 'text-secondary-var hover:text-primary-var'
+                type === 'INCOME' ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-md' : 'text-secondary-var hover:text-primary-var'
               }`}
             >
               <TrendingUp className="w-4 h-4" />
@@ -154,7 +154,7 @@ export const AddExpenseModal: React.FC = () => {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="e.g. Grocery Store, Coffee, Salary"
-              className="w-full bg-sub-surface border border-theme rounded-xl px-4 py-2.5 text-sm text-primary-var placeholder:text-secondary-var/50 focus:outline-none focus:border-[#EA3B35]"
+              className="w-full glass-input rounded-xl px-4 py-2.5 text-sm text-primary-var placeholder:text-secondary-var/50 focus:outline-none"
             />
           </div>
 
@@ -166,7 +166,7 @@ export const AddExpenseModal: React.FC = () => {
                 <span>Amount (Math Supported: 250 + 120 * 1.05)</span>
               </label>
               {mathResult.isValid && (
-                <span className="text-[#EA3B35] font-bold text-xs bg-[#EA3B35]/10 px-2 py-0.5 rounded border border-[#EA3B35]/20">
+                <span className="text-[#EA3B35] font-bold text-xs bg-[#EA3B35]/15 px-2 py-0.5 rounded-lg border border-[#EA3B35]/30">
                   = {settings.currency || '৳'}{mathResult.value.toFixed(2)}
                 </span>
               )}
@@ -177,7 +177,7 @@ export const AddExpenseModal: React.FC = () => {
               value={amountInput}
               onChange={(e) => setAmountInput(e.target.value)}
               placeholder="e.g. 145.50 or 250 + 120"
-              className="w-full bg-sub-surface border border-theme rounded-xl px-4 py-2.5 text-sm text-primary-var placeholder:text-secondary-var/50 font-mono focus:outline-none focus:border-[#EA3B35]"
+              className="w-full glass-input rounded-xl px-4 py-2.5 text-sm text-primary-var placeholder:text-secondary-var/50 font-mono focus:outline-none"
             />
           </div>
 
@@ -185,7 +185,7 @@ export const AddExpenseModal: React.FC = () => {
           <div className="space-y-1">
             <label className="text-xs font-medium text-secondary-var">Target Wallet</label>
             {accounts.length === 0 ? (
-              <div className="p-3 rounded-xl bg-sub-surface border border-amber-500/30 text-amber-500 text-xs flex justify-between items-center">
+              <div className="p-3 rounded-xl glass-card border border-amber-500/30 text-amber-500 text-xs flex justify-between items-center">
                 <span>No wallets created yet</span>
                 <span className="underline cursor-pointer font-bold" onClick={() => setIsAddExpenseOpen(false)}>Create Wallet First</span>
               </div>
@@ -193,7 +193,7 @@ export const AddExpenseModal: React.FC = () => {
               <select
                 value={walletId}
                 onChange={(e) => setWalletId(e.target.value)}
-                className="w-full bg-sub-surface border border-theme rounded-xl px-4 py-2.5 text-sm text-primary-var focus:outline-none focus:border-[#EA3B35]"
+                className="w-full glass-input rounded-xl px-4 py-2.5 text-sm text-primary-var focus:outline-none"
               >
                 {accounts.map(acc => (
                   <option key={acc.id} value={acc.id}>
@@ -220,7 +220,7 @@ export const AddExpenseModal: React.FC = () => {
 
             {/* Inline Custom Category Creator */}
             {isAddingCustomCat && (
-              <div className="p-3 rounded-xl bg-sub-surface border border-[#EA3B35]/40 space-y-2 animate-in fade-in duration-150">
+              <div className="p-3 rounded-xl glass-card border border-[#EA3B35]/40 space-y-2 animate-in fade-in duration-150">
                 <div className="text-xs font-bold text-primary-var">Add New Custom Category</div>
                 <div className="flex items-center space-x-2">
                   <input
@@ -228,12 +228,12 @@ export const AddExpenseModal: React.FC = () => {
                     value={customCatName}
                     onChange={(e) => setCustomCatName(e.target.value)}
                     placeholder="e.g. Subscriptions, Gaming, Pets"
-                    className="flex-1 bg-card-surface border border-theme rounded-lg px-3 py-1.5 text-xs text-primary-var focus:outline-none focus:border-[#EA3B35]"
+                    className="flex-1 glass-input rounded-lg px-3 py-1.5 text-xs text-primary-var"
                   />
                   <button
                     type="button"
                     onClick={handleCreateCustomCategory}
-                    className="px-3 py-1.5 rounded-lg bg-[#EA3B35] hover:bg-[#f04b45] text-white text-xs font-bold flex items-center space-x-1 cursor-pointer"
+                    className="px-3 py-1.5 rounded-lg glass-btn-primary text-xs font-bold flex items-center space-x-1 cursor-pointer"
                   >
                     <Check className="w-3.5 h-3.5" />
                     <span>Save</span>
@@ -253,8 +253,8 @@ export const AddExpenseModal: React.FC = () => {
                     onClick={() => setCategory(cat.name)}
                     className={`py-2 px-2 rounded-xl border flex items-center justify-center space-x-1.5 text-xs font-semibold transition-all cursor-pointer ${
                       isSelected
-                        ? 'bg-[#EA3B35] border-[#EA3B35] text-white shadow-sm'
-                        : 'bg-sub-surface border-theme text-secondary-var hover:text-primary-var'
+                        ? 'glass-btn-primary text-white'
+                        : 'glass-chip text-secondary-var hover:text-primary-var'
                     }`}
                   >
                     <Icon className="w-3.5 h-3.5" />
@@ -273,8 +273,8 @@ export const AddExpenseModal: React.FC = () => {
                       onClick={() => setCategory(cat.name)}
                       className={`w-full py-2 px-2 rounded-xl border flex items-center justify-center space-x-1 text-xs font-semibold transition-all cursor-pointer ${
                         isSelected
-                          ? 'bg-[#EA3B35] border-[#EA3B35] text-white shadow-sm'
-                          : 'bg-sub-surface border-theme text-secondary-var hover:text-primary-var'
+                          ? 'glass-btn-primary text-white'
+                          : 'glass-chip text-secondary-var hover:text-primary-var'
                       }`}
                     >
                       <Tag className="w-3.5 h-3.5 text-amber-500" />
@@ -312,7 +312,7 @@ export const AddExpenseModal: React.FC = () => {
                 type="datetime-local"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                className="w-full bg-sub-surface border border-theme rounded-xl px-3 py-2 text-xs text-primary-var focus:outline-none"
+                className="w-full glass-input rounded-xl px-3 py-2 text-xs text-primary-var focus:outline-none"
               />
             </div>
 
@@ -323,14 +323,14 @@ export const AddExpenseModal: React.FC = () => {
                 value={tagsInput}
                 onChange={(e) => setTagsInput(e.target.value)}
                 placeholder="groceries, tech"
-                className="w-full bg-sub-surface border border-theme rounded-xl px-3 py-2 text-xs text-primary-var placeholder:text-secondary-var/50 focus:outline-none"
+                className="w-full glass-input rounded-xl px-3 py-2 text-xs text-primary-var placeholder:text-secondary-var/50 focus:outline-none"
               />
             </div>
           </div>
 
           <button
             type="submit"
-            className="w-full py-3 rounded-xl bg-[#EA3B35] hover:bg-[#f04b45] text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-[#EA3B35]/25 transition-all active:scale-95 cursor-pointer"
+            className="w-full py-3 rounded-xl glass-btn-primary font-bold text-xs uppercase tracking-wider cursor-pointer"
           >
             Save Transaction Log
           </button>

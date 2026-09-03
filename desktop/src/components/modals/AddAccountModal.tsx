@@ -42,18 +42,18 @@ export const AddAccountModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm p-4 select-none">
-      <div className="w-full max-w-md rounded-2xl bg-card-surface border border-theme p-6 space-y-5 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
-        <div className="flex items-center justify-between">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/65 backdrop-blur-md p-4 select-none animate-in fade-in duration-200">
+      <div className="w-full max-w-md rounded-2xl glass-modal border border-theme p-6 space-y-5 shadow-2xl animate-in zoom-in-95 duration-200">
+        <div className="flex items-center justify-between pb-1 border-b border-theme">
           <h3 className="text-base font-bold text-primary-var flex items-center space-x-2">
             <Wallet className="w-5 h-5 text-[#EA3B35]" />
             <span>Create New Wallet / Card</span>
           </h3>
           <button
             onClick={() => setIsAddAccountOpen(false)}
-            className="p-1 rounded-lg text-secondary-var hover:text-primary-var hover:bg-sub-surface transition-colors cursor-pointer"
+            className="p-1.5 rounded-xl text-secondary-var hover:text-primary-var glass-btn-secondary transition-colors cursor-pointer"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
@@ -66,7 +66,7 @@ export const AddAccountModal: React.FC = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Main Payroll, Cash, Savings"
-              className="w-full bg-sub-surface border border-theme rounded-xl px-4 py-2.5 text-sm text-primary-var focus:outline-none focus:border-[#EA3B35]"
+              className="w-full glass-input rounded-xl px-4 py-2.5 text-sm text-primary-var focus:outline-none"
             />
           </div>
 
@@ -78,7 +78,7 @@ export const AddAccountModal: React.FC = () => {
                 value={bankName}
                 onChange={(e) => setBankName(e.target.value)}
                 placeholder="e.g. Chase, Citi, Cash"
-                className="w-full bg-sub-surface border border-theme rounded-xl px-3 py-2 text-xs text-primary-var focus:outline-none focus:border-[#EA3B35]"
+                className="w-full glass-input rounded-xl px-3 py-2 text-xs text-primary-var focus:outline-none"
               />
             </div>
 
@@ -87,7 +87,7 @@ export const AddAccountModal: React.FC = () => {
               <select
                 value={cardType}
                 onChange={(e) => setCardType(e.target.value as AccountType)}
-                className="w-full bg-sub-surface border border-theme rounded-xl px-3 py-2 text-xs text-primary-var focus:outline-none focus:border-[#EA3B35]"
+                className="w-full glass-input rounded-xl px-3 py-2 text-xs text-primary-var focus:outline-none"
               >
                 <option value="bank">Bank Account</option>
                 <option value="cash">Cash</option>
@@ -105,7 +105,7 @@ export const AddAccountModal: React.FC = () => {
               value={startingBalance}
               onChange={(e) => setStartingBalance(e.target.value)}
               placeholder="0.00"
-              className="w-full bg-sub-surface border border-theme rounded-xl px-4 py-2.5 text-sm text-primary-var font-mono focus:outline-none focus:border-[#EA3B35]"
+              className="w-full glass-input rounded-xl px-4 py-2.5 text-sm text-primary-var font-mono focus:outline-none"
             />
           </div>
 
@@ -122,7 +122,7 @@ export const AddAccountModal: React.FC = () => {
                   key={hex}
                   onClick={() => setColorHex(hex)}
                   className={`w-7 h-7 rounded-full border-2 transition-transform cursor-pointer ${
-                    colorHex === hex ? 'border-primary-var scale-110' : 'border-transparent'
+                    colorHex === hex ? 'border-primary-var scale-110 shadow-md' : 'border-transparent'
                   }`}
                   style={{ backgroundColor: hex }}
                 />
@@ -146,7 +146,7 @@ export const AddAccountModal: React.FC = () => {
 
           <button
             type="submit"
-            className="w-full py-3 rounded-xl bg-[#EA3B35] hover:bg-[#f04b45] text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-[#EA3B35]/25 transition-all active:scale-95 cursor-pointer"
+            className="w-full py-3 rounded-xl glass-btn-primary font-bold text-xs uppercase tracking-wider cursor-pointer"
           >
             Create Wallet Card
           </button>

@@ -69,9 +69,9 @@ export const HistoryScreen: React.FC = () => {
   return (
     <div className="space-y-6 pb-12">
       {/* Header Banner */}
-      <div className="p-6 rounded-2xl bg-card-surface border border-theme flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="p-6 rounded-2xl glass-card border border-theme flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div className="flex items-center space-x-3">
-          <div className="p-3 rounded-xl bg-[#EA3B35]/10 border border-[#EA3B35]/20 text-[#EA3B35]">
+          <div className="p-3 rounded-xl bg-[#EA3B35]/15 border border-[#EA3B35]/30 text-[#EA3B35] shadow-sm">
             <History className="w-6 h-6" />
           </div>
           <div>
@@ -82,7 +82,7 @@ export const HistoryScreen: React.FC = () => {
 
         <button
           onClick={() => setIsExportImportOpen(true)}
-          className="px-4 py-2.5 rounded-xl bg-[#EA3B35] hover:bg-[#f04b45] text-white text-xs font-bold shadow-lg shadow-[#EA3B35]/25 flex items-center space-x-2 transition-all cursor-pointer"
+          className="px-4 py-2.5 rounded-xl glass-btn-primary text-white text-xs font-bold flex items-center space-x-2 cursor-pointer"
         >
           <Download className="w-4 h-4" />
           <span>Export CSV / PDF Report</span>
@@ -90,7 +90,7 @@ export const HistoryScreen: React.FC = () => {
       </div>
 
       {/* Filter Controls Bar */}
-      <div className="p-5 rounded-2xl bg-card-surface border border-theme space-y-4">
+      <div className="p-5 rounded-2xl glass-card border border-theme space-y-4">
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
           {/* Search Input */}
           <div className="relative flex-1">
@@ -100,20 +100,20 @@ export const HistoryScreen: React.FC = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Filter by keyword, note, or tag..."
-              className="w-full bg-sub-surface border border-theme rounded-xl pl-10 pr-4 py-2 text-xs text-primary-var placeholder:text-secondary-var focus:outline-none focus:border-[#EA3B35]"
+              className="w-full glass-input rounded-xl pl-10 pr-4 py-2 text-xs text-primary-var placeholder:text-secondary-var/50 focus:outline-none"
             />
           </div>
 
           {/* Type Toggle Pills */}
-          <div className="flex items-center space-x-1.5 p-1 rounded-xl bg-sub-surface border border-theme">
+          <div className="flex items-center space-x-1.5 p-1 rounded-xl glass-card border border-theme">
             {(['ALL', 'EXPENSE', 'INCOME'] as const).map(t => (
               <button
                 key={t}
                 onClick={() => setActiveTypeFilter(t)}
-                className={`px-3 py-1 rounded-xl border text-xs font-bold transition-colors cursor-pointer ${
+                className={`px-3 py-1 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
                   activeTypeFilter === t
-                    ? 'bg-[#EA3B35] text-white border-[#EA3B35]'
-                    : 'text-secondary-var border-transparent hover:text-primary-var'
+                    ? 'glass-btn-primary text-white'
+                    : 'text-secondary-var hover:text-primary-var'
                 }`}
               >
                 {t}
@@ -125,7 +125,7 @@ export const HistoryScreen: React.FC = () => {
           <select
             value={selectedWalletFilter}
             onChange={(e) => setSelectedWalletFilter(e.target.value)}
-            className="bg-sub-surface border border-theme rounded-xl px-3 py-2 text-xs text-primary-var focus:outline-none"
+            className="glass-input rounded-xl px-3 py-2 text-xs text-primary-var focus:outline-none"
           >
             <option value="ALL">All Wallets</option>
             {accounts.map(acc => (
@@ -137,7 +137,7 @@ export const HistoryScreen: React.FC = () => {
           <select
             value={dateRange}
             onChange={(e: any) => setDateRange(e.target.value)}
-            className="bg-sub-surface border border-theme rounded-xl px-3 py-2 text-xs text-primary-var focus:outline-none"
+            className="glass-input rounded-xl px-3 py-2 text-xs text-primary-var focus:outline-none"
           >
             <option value="ALL">All Time</option>
             <option value="THIS_MONTH">This Month</option>
@@ -154,8 +154,8 @@ export const HistoryScreen: React.FC = () => {
               onClick={() => setActiveCategoryFilter(cat)}
               className={`px-3 py-1 rounded-xl border font-semibold text-xs transition-colors cursor-pointer flex-shrink-0 ${
                 activeCategoryFilter === cat
-                  ? 'bg-[#EA3B35] border-[#EA3B35] text-white'
-                  : 'bg-sub-surface border-theme text-secondary-var hover:text-primary-var'
+                  ? 'glass-btn-primary text-white'
+                  : 'glass-chip text-secondary-var hover:text-primary-var'
               }`}
             >
               {cat}
@@ -165,7 +165,7 @@ export const HistoryScreen: React.FC = () => {
       </div>
 
       {/* History Log Table */}
-      <div className="p-6 rounded-2xl bg-card-surface border border-theme space-y-4">
+      <div className="p-6 rounded-2xl glass-card border border-theme space-y-4">
         <div className="flex items-center justify-between text-xs font-bold text-secondary-var">
           <span>Showing {filteredExpenses.length} transaction(s)</span>
           <span>
@@ -179,8 +179,8 @@ export const HistoryScreen: React.FC = () => {
         </div>
 
         {filteredExpenses.length === 0 ? (
-          <div className="py-16 text-center space-y-3 border-2 border-dashed border-theme rounded-2xl">
-            <div className="w-12 h-12 rounded-full bg-sub-surface text-secondary-var mx-auto flex items-center justify-center">
+          <div className="py-16 text-center space-y-3 border-2 border-dashed border-theme rounded-2xl glass-card">
+            <div className="w-12 h-12 rounded-full glass-chip text-secondary-var mx-auto flex items-center justify-center">
               <History className="w-6 h-6" />
             </div>
             <div className="text-sm font-bold text-primary-var">No transactions match your search</div>
@@ -193,11 +193,11 @@ export const HistoryScreen: React.FC = () => {
               const isIncome = exp.type === 'INCOME';
 
               return (
-                <div key={exp.id} className="py-3.5 flex items-center justify-between hover:bg-sub-surface/50 px-2 rounded-xl transition-colors group">
+                <div key={exp.id} className="py-3.5 flex items-center justify-between hover:bg-white/10 dark:hover:bg-white/5 px-3 rounded-xl transition-colors group">
                   <div className="flex items-center space-x-3.5">
                     <div
                       className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-                        isIncome ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20' : 'bg-[#EA3B35]/10 text-[#EA3B35] border border-[#EA3B35]/20'
+                        isIncome ? 'bg-emerald-500/15 text-emerald-500 border border-emerald-500/30' : 'bg-[#EA3B35]/15 text-[#EA3B35] border border-[#EA3B35]/30'
                       }`}
                     >
                       {isIncome ? <TrendingUp className="w-5 h-5" /> : <TrendingDown className="w-5 h-5" />}
@@ -207,7 +207,7 @@ export const HistoryScreen: React.FC = () => {
                       <div className="flex items-center space-x-2 text-xs text-secondary-var mt-0.5">
                         <span className="font-semibold text-primary-var/80">{exp.category}</span>
                         <span>•</span>
-                        <span className="px-1.5 py-0.5 rounded bg-sub-surface border border-theme">
+                        <span className="px-1.5 py-0.5 rounded glass-chip">
                           {acc?.name || 'Cash Wallet'}
                         </span>
                         <span>•</span>

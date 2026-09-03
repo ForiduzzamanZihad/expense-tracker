@@ -58,9 +58,9 @@ export const AnalyticsScreen: React.FC = () => {
   return (
     <div className="space-y-6 pb-12">
       {/* Header Banner */}
-      <div className="p-6 rounded-2xl bg-card-surface border border-theme flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="p-6 rounded-2xl glass-card border border-theme flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div className="flex items-center space-x-3">
-          <div className="p-3 rounded-xl bg-[#EA3B35]/10 border border-[#EA3B35]/20 text-[#EA3B35]">
+          <div className="p-3 rounded-xl bg-[#EA3B35]/15 border border-[#EA3B35]/30 text-[#EA3B35] shadow-sm">
             <BarChart3 className="w-6 h-6" />
           </div>
           <div>
@@ -75,7 +75,7 @@ export const AnalyticsScreen: React.FC = () => {
           <select
             value={timeRange}
             onChange={(e: any) => setTimeRange(e.target.value)}
-            className="bg-sub-surface border border-theme rounded-xl px-3 py-2 text-xs text-primary-var focus:outline-none"
+            className="glass-input rounded-xl px-3 py-2 text-xs text-primary-var focus:outline-none"
           >
             <option value="THIS_MONTH">This Month</option>
             <option value="LAST_30_DAYS">Last 30 Days</option>
@@ -86,8 +86,8 @@ export const AnalyticsScreen: React.FC = () => {
 
       {/* Top 3 KPI Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div className="p-5 rounded-2xl bg-card-surface border border-theme flex items-center space-x-3">
-          <div className="p-3 rounded-xl bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+        <div className="p-5 rounded-2xl glass-card glass-card-interactive flex items-center space-x-3">
+          <div className="p-3 rounded-xl bg-emerald-500/15 text-emerald-500 border border-emerald-500/30 shadow-sm">
             <ArrowUpRight className="w-6 h-6" />
           </div>
           <div>
@@ -96,8 +96,8 @@ export const AnalyticsScreen: React.FC = () => {
           </div>
         </div>
 
-        <div className="p-5 rounded-2xl bg-card-surface border border-theme flex items-center space-x-3">
-          <div className="p-3 rounded-xl bg-[#EA3B35]/10 text-[#EA3B35] border border-[#EA3B35]/20">
+        <div className="p-5 rounded-2xl glass-card glass-card-interactive flex items-center space-x-3">
+          <div className="p-3 rounded-xl bg-[#EA3B35]/15 text-[#EA3B35] border border-[#EA3B35]/30 shadow-sm">
             <ArrowDownLeft className="w-6 h-6" />
           </div>
           <div>
@@ -106,8 +106,8 @@ export const AnalyticsScreen: React.FC = () => {
           </div>
         </div>
 
-        <div className="p-5 rounded-2xl bg-card-surface border border-theme flex items-center space-x-3">
-          <div className="p-3 rounded-xl bg-indigo-500/10 text-indigo-500 border border-indigo-500/20">
+        <div className="p-5 rounded-2xl glass-card glass-card-interactive flex items-center space-x-3">
+          <div className="p-3 rounded-xl bg-indigo-500/15 text-indigo-500 border border-indigo-500/30 shadow-sm">
             <PiggyBank className="w-6 h-6" />
           </div>
           <div>
@@ -120,7 +120,7 @@ export const AnalyticsScreen: React.FC = () => {
       {/* Analytics Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Chart 1: Income vs Expenses Comparison Bar Chart */}
-        <div className="p-6 rounded-2xl bg-card-surface border border-theme space-y-4">
+        <div className="p-6 rounded-2xl glass-card border border-theme space-y-4">
           <div>
             <h3 className="text-base font-bold text-primary-var">Cash Flow Comparison</h3>
             <p className="text-xs text-secondary-var">Inflow vs Outflow vs Net Savings comparison</p>
@@ -146,7 +146,7 @@ export const AnalyticsScreen: React.FC = () => {
         </div>
 
         {/* Chart 2: Category Spending Distribution */}
-        <div className="p-6 rounded-2xl bg-card-surface border border-theme space-y-4">
+        <div className="p-6 rounded-2xl glass-card border border-theme space-y-4">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-base font-bold text-primary-var">Category Distribution</h3>
@@ -156,7 +156,7 @@ export const AnalyticsScreen: React.FC = () => {
           </div>
 
           {categoryData.length === 0 ? (
-            <div className="h-64 flex items-center justify-center text-xs text-secondary-var border border-dashed border-theme rounded-xl">
+            <div className="h-64 flex items-center justify-center text-xs text-secondary-var border border-dashed border-theme rounded-xl glass-card">
               No expense data recorded for this period.
             </div>
           ) : (
@@ -188,11 +188,11 @@ export const AnalyticsScreen: React.FC = () => {
       </div>
 
       {/* Category Breakdown Table */}
-      <div className="p-6 rounded-2xl bg-card-surface border border-theme space-y-4">
+      <div className="p-6 rounded-2xl glass-card border border-theme space-y-4">
         <h3 className="text-base font-bold text-primary-var">Detailed Category Breakdown</h3>
 
         {categoryData.length === 0 ? (
-          <div className="py-8 text-center text-xs text-secondary-var border border-dashed border-theme rounded-xl">
+          <div className="py-8 text-center text-xs text-secondary-var border border-dashed border-theme rounded-xl glass-card">
             No expenses logged for this time range.
           </div>
         ) : (
@@ -202,7 +202,7 @@ export const AnalyticsScreen: React.FC = () => {
               const color = COLOR_PALETTE[idx % COLOR_PALETTE.length];
 
               return (
-                <div key={cat.name} className="py-3 flex items-center justify-between hover:bg-sub-surface px-2 rounded-xl transition-colors">
+                <div key={cat.name} className="py-3 flex items-center justify-between hover:bg-white/10 dark:hover:bg-white/5 px-3 rounded-xl transition-colors">
                   <div className="flex items-center space-x-3">
                     <div className="w-3.5 h-3.5 rounded-full" style={{ backgroundColor: color }} />
                     <span className="text-sm font-semibold text-primary-var">{cat.name}</span>

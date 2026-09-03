@@ -34,18 +34,18 @@ export const TransferModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm p-4 select-none">
-      <div className="w-full max-w-md rounded-2xl bg-card-surface border border-theme p-6 space-y-5 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
-        <div className="flex items-center justify-between">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/65 backdrop-blur-md p-4 select-none animate-in fade-in duration-200">
+      <div className="w-full max-w-md rounded-2xl glass-modal border border-theme p-6 space-y-5 shadow-2xl animate-in zoom-in-95 duration-200">
+        <div className="flex items-center justify-between pb-1 border-b border-theme">
           <h3 className="text-base font-bold text-primary-var flex items-center space-x-2">
             <ArrowRightLeft className="w-5 h-5 text-purple-500" />
             <span>Transfer Funds Between Wallets</span>
           </h3>
           <button
             onClick={() => setIsTransferOpen(false)}
-            className="p-1 rounded-lg text-secondary-var hover:text-primary-var hover:bg-sub-surface transition-colors cursor-pointer"
+            className="p-1.5 rounded-xl text-secondary-var hover:text-primary-var glass-btn-secondary transition-colors cursor-pointer"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
@@ -55,7 +55,7 @@ export const TransferModal: React.FC = () => {
             <select
               value={fromWalletId}
               onChange={(e) => setFromWalletId(e.target.value)}
-              className="w-full bg-sub-surface border border-theme rounded-xl px-4 py-2.5 text-sm text-primary-var focus:outline-none focus:border-purple-500"
+              className="w-full glass-input rounded-xl px-4 py-2.5 text-sm text-primary-var focus:outline-none"
             >
               {accounts.map(acc => (
                 <option key={acc.id} value={acc.id}>
@@ -70,7 +70,7 @@ export const TransferModal: React.FC = () => {
             <select
               value={toWalletId}
               onChange={(e) => setToWalletId(e.target.value)}
-              className="w-full bg-sub-surface border border-theme rounded-xl px-4 py-2.5 text-sm text-primary-var focus:outline-none focus:border-purple-500"
+              className="w-full glass-input rounded-xl px-4 py-2.5 text-sm text-primary-var focus:outline-none"
             >
               {accounts.map(acc => (
                 <option key={acc.id} value={acc.id}>
@@ -87,7 +87,7 @@ export const TransferModal: React.FC = () => {
                 <span>Transfer Amount</span>
               </label>
               {mathResult.isValid && (
-                <span className="text-purple-500 font-bold text-xs bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/20">
+                <span className="text-purple-500 font-bold text-xs bg-purple-500/15 px-2 py-0.5 rounded-lg border border-purple-500/30">
                   = {settings.currency || '৳'}{mathResult.value.toFixed(2)}
                 </span>
               )}
@@ -98,7 +98,7 @@ export const TransferModal: React.FC = () => {
               value={amountInput}
               onChange={(e) => setAmountInput(e.target.value)}
               placeholder="e.g. 500"
-              className="w-full bg-sub-surface border border-theme rounded-xl px-4 py-2.5 text-sm text-primary-var font-mono focus:outline-none focus:border-purple-500"
+              className="w-full glass-input rounded-xl px-4 py-2.5 text-sm text-primary-var font-mono focus:outline-none"
             />
           </div>
 
@@ -109,13 +109,13 @@ export const TransferModal: React.FC = () => {
               value={note}
               onChange={(e) => setNote(e.target.value)}
               placeholder="e.g. ATM cash withdrawal"
-              className="w-full bg-sub-surface border border-theme rounded-xl px-4 py-2.5 text-sm text-primary-var focus:outline-none focus:border-purple-500"
+              className="w-full glass-input rounded-xl px-4 py-2.5 text-sm text-primary-var focus:outline-none"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-purple-500/20 transition-all active:scale-95 cursor-pointer"
+            className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-purple-500/25 transition-all active:scale-95 cursor-pointer"
           >
             Execute Inter-Wallet Transfer
           </button>

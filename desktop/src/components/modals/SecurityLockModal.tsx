@@ -22,9 +22,9 @@ export const SecurityLockModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-app-main select-none p-4">
-      <div className="w-full max-w-sm rounded-2xl bg-card-surface border border-theme p-8 space-y-6 text-center shadow-2xl animate-in fade-in zoom-in-95 duration-200">
-        <div className="w-16 h-16 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-500 mx-auto flex items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-xl select-none p-4 animate-in fade-in duration-200">
+      <div className="w-full max-w-sm rounded-2xl glass-modal border border-theme p-8 space-y-6 text-center shadow-2xl animate-in zoom-in-95 duration-200">
+        <div className="w-16 h-16 rounded-2xl bg-rose-500/15 border border-rose-500/30 text-rose-500 mx-auto flex items-center justify-center shadow-lg shadow-rose-500/20">
           <Lock className="w-8 h-8" />
         </div>
 
@@ -34,7 +34,7 @@ export const SecurityLockModal: React.FC = () => {
         </div>
 
         {error && (
-          <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-500 text-xs font-semibold flex items-center justify-center space-x-1.5">
+          <div className="p-3 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-500 text-xs font-semibold flex items-center justify-center space-x-1.5 animate-bounce">
             <AlertCircle className="w-4 h-4" />
             <span>Incorrect PIN entered</span>
           </div>
@@ -48,12 +48,12 @@ export const SecurityLockModal: React.FC = () => {
             value={pinInput}
             onChange={(e) => setPinInput(e.target.value)}
             placeholder="••••"
-            className="w-full bg-sub-surface border border-theme rounded-xl px-4 py-3 text-center text-2xl tracking-[0.5em] font-mono text-primary-var focus:outline-none focus:border-[#EA3B35]"
+            className="w-full glass-input rounded-xl px-4 py-3 text-center text-2xl tracking-[0.5em] font-mono text-primary-var focus:outline-none"
           />
 
           <button
             type="submit"
-            className="w-full py-3 rounded-xl bg-[#EA3B35] hover:bg-[#f04b45] text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-[#EA3B35]/25 transition-all active:scale-95 flex items-center justify-center space-x-2 cursor-pointer"
+            className="w-full py-3 rounded-xl glass-btn-primary font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 cursor-pointer"
           >
             <KeyRound className="w-4 h-4" />
             <span>Unlock Application</span>

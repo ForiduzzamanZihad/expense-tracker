@@ -38,22 +38,22 @@ export const SettleDebtModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm p-4 select-none">
-      <div className="w-full max-w-md rounded-2xl bg-card-surface border border-theme p-6 space-y-5 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
-        <div className="flex items-center justify-between">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/65 backdrop-blur-md p-4 select-none animate-in fade-in duration-200">
+      <div className="w-full max-w-md rounded-2xl glass-modal border border-theme p-6 space-y-5 shadow-2xl animate-in zoom-in-95 duration-200">
+        <div className="flex items-center justify-between pb-1 border-b border-theme">
           <h3 className="text-base font-bold text-primary-var flex items-center space-x-2">
             <ShieldCheck className="w-5 h-5 text-emerald-500" />
             <span>Settle Debt / Receivable</span>
           </h3>
           <button
             onClick={() => setIsSettleDebtOpen(false)}
-            className="p-1 rounded-lg text-secondary-var hover:text-primary-var hover:bg-sub-surface transition-colors cursor-pointer"
+            className="p-1.5 rounded-xl text-secondary-var hover:text-primary-var glass-btn-secondary transition-colors cursor-pointer"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
-        <div className="p-3 rounded-xl bg-sub-surface border border-theme space-y-1 text-xs">
+        <div className="p-3.5 rounded-xl glass-card border border-theme space-y-1 text-xs">
           <div className="text-primary-var font-semibold">{selectedDebtForSettle.personName}</div>
           <div className="text-secondary-var">
             Original Amount: {settings.currency || '৳'}{selectedDebtForSettle.amount.toFixed(2)} | Outstanding: {settings.currency || '৳'}{remaining.toFixed(2)}
@@ -69,7 +69,7 @@ export const SettleDebtModal: React.FC = () => {
               value={amountInput}
               onChange={(e) => setAmountInput(e.target.value)}
               placeholder={`Remaining: ${remaining.toFixed(2)}`}
-              className="w-full bg-sub-surface border border-theme rounded-xl px-4 py-2.5 text-sm text-primary-var font-mono focus:outline-none focus:border-emerald-500"
+              className="w-full glass-input rounded-xl px-4 py-2.5 text-sm text-primary-var font-mono focus:outline-none"
             />
           </div>
 
@@ -92,7 +92,7 @@ export const SettleDebtModal: React.FC = () => {
               <select
                 value={targetWalletId}
                 onChange={(e) => setTargetWalletId(e.target.value)}
-                className="w-full bg-sub-surface border border-theme rounded-xl px-3 py-2 text-xs text-primary-var focus:outline-none"
+                className="w-full glass-input rounded-xl px-3 py-2 text-xs text-primary-var focus:outline-none"
               >
                 {accounts.map(acc => (
                   <option key={acc.id} value={acc.id}>{acc.name}</option>
@@ -103,7 +103,7 @@ export const SettleDebtModal: React.FC = () => {
 
           <button
             type="submit"
-            className="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-emerald-500/20 transition-all active:scale-95 cursor-pointer"
+            className="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-emerald-500/25 transition-all active:scale-95 cursor-pointer"
           >
             Record Debt Settlement
           </button>

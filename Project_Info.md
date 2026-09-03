@@ -7,7 +7,7 @@
 **Platform:** Mobile Application (Android App)  
 
 ## Overview
-[Expense Tracker (v2.0.0)](file:///d:/expense-tracker/README.md) is a premium, offline-first personal finance and wealth management application developed natively for the Android platform. By running 100% locally and device-bound, it guarantees absolute privacy for the user's financial ledger. The application allows users to orchestrate their budgets, manage multiple accounts/wallets (like Cash, Credit Cards, Bank Accounts, and Savings), log transactions with an integrated arithmetic calculator, track loans and borrowing, and schedule recurring expenses or income. 
+[Expense Tracker (v3.0.0)](file:///d:/expense-tracker/README.md) is a premium, offline-first personal finance and wealth management application developed natively for the Android platform. By running 100% locally and device-bound, it guarantees absolute privacy for the user's financial ledger. The application allows users to orchestrate their budgets, manage multiple accounts/wallets (like Cash, Credit Cards, Bank Accounts, and Savings), log transactions with an integrated arithmetic calculator, track loans and borrowing, and schedule recurring expenses or income. 
 
 The application is built on modern Android development standards, utilizing Jetpack Compose for reactive, declarative layouts, Kotlin Coroutines & Flow for asynchronous stream handling, Room Database for persistent storage, and local biometric sensors for hardware-level app lock security.
 
@@ -18,7 +18,7 @@ We were inspired to build a premium, offline-first personal finance and wealth m
 
 ## What it does
 
-[Expense Tracker (v2.0.0)](file:///d:/expense-tracker/README.md) is a feature-rich, local-first finance manager for Android. Key features include:
+[Expense Tracker (v3.0.0)](file:///d:/expense-tracker/README.md) is a feature-rich, local-first finance manager for Android. Key features include:
 - **Dynamic Dashboard & Budget Controller:** High-visibility spending indicators displaying remaining funds relative to budget intervals (Weekly, Monthly, Custom) along with smooth, interactive 7-day spending line charts.
 - **Multi-Wallet Account System:** Creation and customization of distinct financial pools (Cash, Credit Cards, Savings) with custom color hexes, bank names, starting balances, and icons. Balances automatically adjust during inter-account transfers.
 - **Arithmetic Input Parser:** An inline math evaluation keyboard that parses arithmetic strings directly in the transaction amount field, displaying a live preview prior to confirmation.

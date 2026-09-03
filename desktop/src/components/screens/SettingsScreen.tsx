@@ -64,7 +64,7 @@ export const SettingsScreen: React.FC = () => {
   return (
     <div className="space-y-6 pb-12 max-w-3xl">
       {/* Header Banner */}
-      <div className="p-6 rounded-2xl bg-card-surface border border-theme flex items-center space-x-3">
+      <div className="p-6 rounded-2xl glass-card border border-theme flex items-center space-x-3">
         <Settings className="w-6 h-6 text-[#EA3B35]" />
         <div>
           <h2 className="text-xl font-bold text-primary-var">Application Settings</h2>
@@ -73,14 +73,14 @@ export const SettingsScreen: React.FC = () => {
       </div>
 
       {savedSuccess && (
-        <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold flex items-center space-x-2">
+        <div className="p-4 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-semibold flex items-center space-x-2 animate-in fade-in">
           <CheckCircle2 className="w-4 h-4" />
           <span>Settings saved successfully!</span>
         </div>
       )}
 
       {/* Section 1: User Profile Settings */}
-      <div className="p-6 rounded-2xl bg-card-surface border border-theme space-y-4">
+      <div className="p-6 rounded-2xl glass-card border border-theme space-y-4">
         <div className="flex items-center space-x-2">
           <User className="w-5 h-5 text-[#EA3B35]" />
           <h3 className="text-base font-bold text-primary-var">User Profile</h3>
@@ -93,14 +93,14 @@ export const SettingsScreen: React.FC = () => {
               type="text"
               value={nameInput}
               onChange={(e) => setNameInput(e.target.value)}
-              className="w-full bg-sub-surface border border-theme rounded-xl px-4 py-2.5 text-sm text-primary-var focus:outline-none focus:border-[#EA3B35]"
+              className="w-full glass-input rounded-xl px-4 py-2.5 text-sm text-primary-var focus:outline-none"
               placeholder="e.g. John Doe"
             />
           </div>
 
           <button
             type="submit"
-            className="px-5 py-2.5 rounded-xl bg-[#EA3B35] hover:bg-[#f04b45] text-white text-xs font-bold transition-all shadow-md shadow-[#EA3B35]/25 cursor-pointer"
+            className="px-5 py-2.5 rounded-xl glass-btn-primary text-white text-xs font-bold cursor-pointer"
           >
             Save Profile Name
           </button>
@@ -108,7 +108,7 @@ export const SettingsScreen: React.FC = () => {
       </div>
 
       {/* Section 2: Currency Preference */}
-      <div className="p-6 rounded-2xl bg-card-surface border border-theme space-y-4">
+      <div className="p-6 rounded-2xl glass-card border border-theme space-y-4">
         <div className="flex items-center space-x-2">
           <Coins className="w-5 h-5 text-[#EA3B35]" />
           <h3 className="text-base font-bold text-primary-var">Currency Preference</h3>
@@ -130,8 +130,8 @@ export const SettingsScreen: React.FC = () => {
                   }}
                   className={`p-3 rounded-xl border text-xs font-bold text-left transition-all cursor-pointer flex items-center justify-between ${
                     isSelected
-                      ? 'bg-[#EA3B35] text-white border-[#EA3B35] shadow-md'
-                      : 'bg-sub-surface border-theme text-primary-var hover:border-[#EA3B35]/50'
+                      ? 'glass-btn-primary text-white border-transparent'
+                      : 'glass-card border-theme text-primary-var hover:border-[#EA3B35]/50'
                   }`}
                 >
                   <span>{opt.label}</span>
@@ -144,7 +144,7 @@ export const SettingsScreen: React.FC = () => {
       </div>
 
       {/* Section 3: Budget Period & Limit */}
-      <div className="p-6 rounded-2xl bg-card-surface border border-theme space-y-4">
+      <div className="p-6 rounded-2xl glass-card border border-theme space-y-4">
         <h3 className="text-base font-bold text-primary-var">Budget Period & Limit Target</h3>
 
         <form onSubmit={handleSaveBudget} className="space-y-4">
@@ -156,8 +156,8 @@ export const SettingsScreen: React.FC = () => {
                 onClick={() => setBudgetPeriod(p, settings.budget.limitAmount)}
                 className={`py-2.5 rounded-xl border text-xs font-bold transition-colors cursor-pointer ${
                   settings.budget.periodType === p
-                    ? 'bg-[#EA3B35] text-white border-[#EA3B35]'
-                    : 'bg-sub-surface text-secondary-var border-theme hover:text-primary-var'
+                    ? 'glass-btn-primary text-white border-transparent'
+                    : 'glass-card text-secondary-var border-theme hover:text-primary-var'
                 }`}
               >
                 {p}
@@ -171,14 +171,14 @@ export const SettingsScreen: React.FC = () => {
               type="number"
               value={limitInput}
               onChange={(e) => setLimitInput(e.target.value)}
-              className="w-full bg-sub-surface border border-theme rounded-xl px-4 py-2.5 text-sm text-primary-var focus:outline-none focus:border-[#EA3B35]"
+              className="w-full glass-input rounded-xl px-4 py-2.5 text-sm text-primary-var focus:outline-none"
               placeholder="e.g. 10000"
             />
           </div>
 
           <button
             type="submit"
-            className="px-5 py-2.5 rounded-xl bg-[#EA3B35] hover:bg-[#f04b45] text-white text-xs font-bold transition-all shadow-md shadow-[#EA3B35]/25 cursor-pointer"
+            className="px-5 py-2.5 rounded-xl glass-btn-primary text-white text-xs font-bold cursor-pointer"
           >
             Update Budget Target
           </button>
@@ -186,20 +186,20 @@ export const SettingsScreen: React.FC = () => {
       </div>
 
       {/* Section 4: Master PIN Security Lock */}
-      <div className="p-6 rounded-2xl bg-card-surface border border-theme space-y-4">
+      <div className="p-6 rounded-2xl glass-card border border-theme space-y-4">
         <div className="flex items-center space-x-2">
           <Lock className="w-5 h-5 text-rose-500" />
           <h3 className="text-base font-bold text-primary-var">Master Security PIN Lock</h3>
         </div>
 
         {settings.pinLock ? (
-          <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-between">
+          <div className="p-4 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-between">
             <div className="text-xs text-emerald-400 font-bold">
               ✓ App is protected with a Master PIN
             </div>
             <button
               onClick={handleRemovePin}
-              className="px-3.5 py-1.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-500 border border-rose-500/30 text-xs font-bold transition-colors cursor-pointer"
+              className="px-3.5 py-1.5 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 text-rose-500 border border-rose-500/30 text-xs font-bold transition-colors cursor-pointer"
             >
               Remove Security Lock
             </button>
@@ -216,11 +216,11 @@ export const SettingsScreen: React.FC = () => {
                 onChange={(e) => setPinInput(e.target.value)}
                 placeholder="Enter 4-digit PIN"
                 maxLength={8}
-                className="bg-sub-surface border border-theme rounded-xl px-4 py-2 text-sm text-primary-var focus:outline-none focus:border-[#EA3B35]"
+                className="glass-input rounded-xl px-4 py-2 text-sm text-primary-var focus:outline-none"
               />
               <button
                 onClick={handleSetPin}
-                className="px-4 py-2 rounded-xl bg-[#EA3B35] hover:bg-[#f04b45] text-white text-xs font-bold transition-all shadow-md shadow-[#EA3B35]/25 cursor-pointer"
+                className="px-4 py-2 rounded-xl glass-btn-primary text-white text-xs font-bold cursor-pointer"
               >
                 Enable Security Lock
               </button>
@@ -230,7 +230,7 @@ export const SettingsScreen: React.FC = () => {
       </div>
 
       {/* Section 5: Data Migration & Sync */}
-      <div className="p-6 rounded-2xl bg-card-surface border border-theme space-y-4">
+      <div className="p-6 rounded-2xl glass-card border border-theme space-y-4">
         <div className="flex items-center space-x-2">
           <Database className="w-5 h-5 text-[#EA3B35]" />
           <h3 className="text-base font-bold text-primary-var">Data Sync & Backup Tools</h3>
@@ -243,7 +243,7 @@ export const SettingsScreen: React.FC = () => {
         <div className="flex flex-col sm:flex-row items-center gap-3">
           <button
             onClick={() => setIsExportImportOpen(true)}
-            className="flex-1 py-3 px-4 rounded-xl bg-[#EA3B35] hover:bg-[#f04b45] text-white text-xs font-bold flex items-center justify-center space-x-2 shadow-lg shadow-[#EA3B35]/25 transition-all cursor-pointer"
+            className="flex-1 py-3 px-4 rounded-xl glass-btn-primary text-white text-xs font-bold flex items-center justify-center space-x-2 cursor-pointer"
           >
             <Database className="w-4 h-4" />
             <span>Open Data Sync & Backup Center</span>
@@ -251,7 +251,7 @@ export const SettingsScreen: React.FC = () => {
 
           <button
             onClick={resetOnboarding}
-            className="py-3 px-4 rounded-xl bg-sub-surface hover:bg-theme-main text-primary-var border border-theme text-xs font-bold flex items-center justify-center space-x-1.5 transition-colors cursor-pointer"
+            className="py-3 px-4 rounded-xl glass-btn-secondary text-primary-var text-xs font-bold flex items-center justify-center space-x-1.5 cursor-pointer"
           >
             <Sparkles className="w-4 h-4 text-[#EA3B35]" />
             <span>Re-run Onboarding Tour</span>
@@ -267,7 +267,7 @@ export const SettingsScreen: React.FC = () => {
                 onConfirm: () => clearAllData()
               });
             }}
-            className="py-3 px-4 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-500 border border-rose-500/30 text-xs font-bold flex items-center justify-center space-x-1.5 transition-colors cursor-pointer"
+            className="py-3 px-4 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 text-rose-500 border border-rose-500/30 text-xs font-bold flex items-center justify-center space-x-1.5 transition-colors cursor-pointer"
           >
             <Trash2 className="w-4 h-4" />
             <span>Clear All Data</span>

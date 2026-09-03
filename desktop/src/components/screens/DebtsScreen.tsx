@@ -30,8 +30,8 @@ export const DebtsScreen: React.FC = () => {
     <div className="space-y-6 pb-12">
       {/* Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div className="p-5 rounded-2xl bg-card-surface border border-theme flex items-center space-x-3">
-          <div className="p-3 rounded-xl bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+        <div className="p-5 rounded-2xl glass-card glass-card-interactive flex items-center space-x-3">
+          <div className="p-3 rounded-xl bg-emerald-500/15 text-emerald-500 border border-emerald-500/30 shadow-sm">
             <ArrowUpRight className="w-6 h-6" />
           </div>
           <div>
@@ -40,8 +40,8 @@ export const DebtsScreen: React.FC = () => {
           </div>
         </div>
 
-        <div className="p-5 rounded-2xl bg-card-surface border border-theme flex items-center space-x-3">
-          <div className="p-3 rounded-xl bg-rose-500/10 text-rose-500 border border-rose-500/20">
+        <div className="p-5 rounded-2xl glass-card glass-card-interactive flex items-center space-x-3">
+          <div className="p-3 rounded-xl bg-rose-500/15 text-rose-500 border border-rose-500/30 shadow-sm">
             <ArrowDownLeft className="w-6 h-6" />
           </div>
           <div>
@@ -50,7 +50,7 @@ export const DebtsScreen: React.FC = () => {
           </div>
         </div>
 
-        <div className="p-5 rounded-2xl bg-card-surface border border-theme flex items-center justify-between">
+        <div className="p-5 rounded-2xl glass-card glass-card-interactive flex items-center justify-between">
           <div>
             <span className="text-xs font-bold text-secondary-var uppercase tracking-wide">Debt Ledger</span>
             <div className="text-xs text-secondary-var mt-0.5">{debtsDues.filter(d => !d.isSettled).length} pending item(s)</div>
@@ -58,7 +58,7 @@ export const DebtsScreen: React.FC = () => {
 
           <button
             onClick={() => setIsAddDebtOpen(true)}
-            className="px-4 py-2.5 rounded-xl bg-[#EA3B35] hover:bg-[#f04b45] text-white text-xs font-bold shadow-lg shadow-[#EA3B35]/25 flex items-center space-x-1.5 transition-all active:scale-95 cursor-pointer"
+            className="px-4 py-2.5 rounded-xl glass-btn-primary text-white text-xs font-bold flex items-center space-x-1.5 cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             <span>Add Record</span>
@@ -68,8 +68,8 @@ export const DebtsScreen: React.FC = () => {
 
       {/* Debts & Receivables List */}
       {debtsDues.length === 0 ? (
-        <div className="py-16 text-center space-y-4 border-2 border-dashed border-theme rounded-2xl bg-card-surface/50">
-          <div className="w-14 h-14 rounded-2xl bg-[#EA3B35]/10 border border-[#EA3B35]/20 text-[#EA3B35] mx-auto flex items-center justify-center">
+        <div className="py-16 text-center space-y-4 border-2 border-dashed border-theme rounded-2xl glass-card">
+          <div className="w-14 h-14 rounded-2xl bg-[#EA3B35]/15 border border-[#EA3B35]/30 text-[#EA3B35] mx-auto flex items-center justify-center shadow-md shadow-[#EA3B35]/20">
             <Scale className="w-7 h-7" />
           </div>
           <div>
@@ -80,7 +80,7 @@ export const DebtsScreen: React.FC = () => {
           </div>
           <button
             onClick={() => setIsAddDebtOpen(true)}
-            className="px-5 py-2.5 rounded-xl bg-[#EA3B35] hover:bg-[#f04b45] text-white text-xs font-bold shadow-lg shadow-[#EA3B35]/25 transition-all inline-flex items-center space-x-2 cursor-pointer"
+            className="px-5 py-2.5 rounded-xl glass-btn-primary text-white text-xs font-bold cursor-pointer inline-flex items-center space-x-2"
           >
             <Plus className="w-4 h-4" />
             <span>Add Debt Record</span>
@@ -96,15 +96,15 @@ export const DebtsScreen: React.FC = () => {
             return (
               <div
                 key={debt.id}
-                className={`p-5 rounded-2xl bg-card-surface border transition-all space-y-4 ${
-                  debt.isSettled ? 'border-emerald-500/30 opacity-70' : 'border-theme'
+                className={`p-5 rounded-2xl glass-card glass-card-interactive border transition-all space-y-4 ${
+                  debt.isSettled ? 'border-emerald-500/40 opacity-75' : 'border-theme'
                 }`}
               >
                 <div className="flex items-start justify-between">
                   <div className="flex items-center space-x-3">
                     <div
                       className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-                        isLent ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-500 border border-rose-500/20'
+                        isLent ? 'bg-emerald-500/15 text-emerald-500 border border-emerald-500/30' : 'bg-rose-500/15 text-rose-500 border border-rose-500/30'
                       }`}
                     >
                       {isLent ? <ArrowUpRight className="w-5 h-5" /> : <ArrowDownLeft className="w-5 h-5" />}
@@ -124,7 +124,7 @@ export const DebtsScreen: React.FC = () => {
                         onConfirm: () => deleteDebtDue(debt.id)
                       });
                     }}
-                    className="p-1 rounded-lg text-secondary-var hover:text-rose-500 hover:bg-rose-500/10 transition-colors cursor-pointer"
+                    className="p-1.5 rounded-lg text-secondary-var hover:text-rose-500 hover:bg-rose-500/10 transition-colors cursor-pointer"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -146,7 +146,7 @@ export const DebtsScreen: React.FC = () => {
 
                 {/* Progress bar for partial payments */}
                 <div className="space-y-1">
-                  <div className="w-full h-2 bg-sub-surface rounded-full overflow-hidden">
+                  <div className="w-full h-2 bg-sub-surface/80 rounded-full overflow-hidden p-0.5 border border-theme">
                     <div
                       className={`h-full rounded-full transition-all duration-500 ${isLent ? 'bg-emerald-500' : 'bg-[#EA3B35]'}`}
                       style={{ width: `${progress}%` }}
@@ -161,13 +161,13 @@ export const DebtsScreen: React.FC = () => {
                 {!debt.isSettled ? (
                   <button
                     onClick={() => openSettleDebtModal(debt)}
-                    className="w-full py-2.5 rounded-xl bg-sub-surface hover:bg-emerald-500 hover:text-white border border-theme text-primary-var text-xs font-bold flex items-center justify-center space-x-2 transition-all cursor-pointer"
+                    className="w-full py-2.5 rounded-xl glass-btn-secondary hover:bg-emerald-500 hover:text-white border border-theme text-primary-var text-xs font-bold flex items-center justify-center space-x-2 transition-all cursor-pointer"
                   >
                     <ShieldCheck className="w-4 h-4 text-emerald-500" />
                     <span>Settle / Make Payment</span>
                   </button>
                 ) : (
-                  <div className="p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-xs font-bold text-center">
+                  <div className="p-2 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-500 text-xs font-bold text-center">
                     ✓ Fully Settled
                   </div>
                 )}

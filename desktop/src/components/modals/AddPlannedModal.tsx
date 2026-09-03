@@ -46,18 +46,18 @@ export const AddPlannedModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm p-4 select-none">
-      <div className="w-full max-w-md rounded-2xl bg-card-surface border border-theme p-6 space-y-5 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
-        <div className="flex items-center justify-between">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/65 backdrop-blur-md p-4 select-none animate-in fade-in duration-200">
+      <div className="w-full max-w-md rounded-2xl glass-modal border border-theme p-6 space-y-5 shadow-2xl animate-in zoom-in-95 duration-200">
+        <div className="flex items-center justify-between pb-1 border-b border-theme">
           <h3 className="text-base font-bold text-primary-var flex items-center space-x-2">
             <CalendarClock className="w-5 h-5 text-[#EA3B35]" />
             <span>Schedule Recurring Payment</span>
           </h3>
           <button
             onClick={() => setIsAddPlannedOpen(false)}
-            className="p-1 rounded-lg text-secondary-var hover:text-primary-var hover:bg-sub-surface transition-colors cursor-pointer"
+            className="p-1.5 rounded-xl text-secondary-var hover:text-primary-var glass-btn-secondary transition-colors cursor-pointer"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
@@ -70,7 +70,7 @@ export const AddPlannedModal: React.FC = () => {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="e.g. Netflix, Gym, Monthly Rent"
-              className="w-full bg-sub-surface border border-theme rounded-xl px-4 py-2.5 text-sm text-primary-var focus:outline-none focus:border-[#EA3B35]"
+              className="w-full glass-input rounded-xl px-4 py-2.5 text-sm text-primary-var focus:outline-none"
             />
           </div>
 
@@ -80,7 +80,7 @@ export const AddPlannedModal: React.FC = () => {
               <select
                 value={type}
                 onChange={(e) => setType(e.target.value as TransactionType)}
-                className="w-full bg-sub-surface border border-theme rounded-xl px-3 py-2 text-xs text-primary-var focus:outline-none"
+                className="w-full glass-input rounded-xl px-3 py-2 text-xs text-primary-var focus:outline-none"
               >
                 <option value="EXPENSE">Expense Bill</option>
                 <option value="INCOME">Recurring Income</option>
@@ -92,7 +92,7 @@ export const AddPlannedModal: React.FC = () => {
               <select
                 value={frequency}
                 onChange={(e) => setFrequency(e.target.value as FrequencyType)}
-                className="w-full bg-sub-surface border border-theme rounded-xl px-3 py-2 text-xs text-primary-var focus:outline-none"
+                className="w-full glass-input rounded-xl px-3 py-2 text-xs text-primary-var focus:outline-none"
               >
                 <option value="DAILY">Daily</option>
                 <option value="WEEKLY">Weekly</option>
@@ -110,7 +110,7 @@ export const AddPlannedModal: React.FC = () => {
               value={amountInput}
               onChange={(e) => setAmountInput(e.target.value)}
               placeholder="e.g. 19.99"
-              className="w-full bg-sub-surface border border-theme rounded-xl px-4 py-2.5 text-sm text-primary-var font-mono focus:outline-none focus:border-[#EA3B35]"
+              className="w-full glass-input rounded-xl px-4 py-2.5 text-sm text-primary-var font-mono focus:outline-none"
             />
           </div>
 
@@ -120,7 +120,7 @@ export const AddPlannedModal: React.FC = () => {
               <select
                 value={walletId}
                 onChange={(e) => setWalletId(e.target.value)}
-                className="w-full bg-sub-surface border border-theme rounded-xl px-3 py-2 text-xs text-primary-var focus:outline-none"
+                className="w-full glass-input rounded-xl px-3 py-2 text-xs text-primary-var focus:outline-none"
               >
                 {accounts.map(acc => (
                   <option key={acc.id} value={acc.id}>{acc.name}</option>
@@ -135,7 +135,7 @@ export const AddPlannedModal: React.FC = () => {
                 required
                 value={nextDueDate}
                 onChange={(e) => setNextDueDate(e.target.value)}
-                className="w-full bg-sub-surface border border-theme rounded-xl px-3 py-2 text-xs text-primary-var focus:outline-none"
+                className="w-full glass-input rounded-xl px-3 py-2 text-xs text-primary-var focus:outline-none"
               />
             </div>
           </div>
@@ -157,7 +157,7 @@ export const AddPlannedModal: React.FC = () => {
 
           <button
             type="submit"
-            className="w-full py-3 rounded-xl bg-[#EA3B35] hover:bg-[#f04b45] text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-[#EA3B35]/25 transition-all active:scale-95 cursor-pointer"
+            className="w-full py-3 rounded-xl glass-btn-primary font-bold text-xs uppercase tracking-wider cursor-pointer"
           >
             Save Scheduled Payment
           </button>

@@ -60,23 +60,23 @@ export const HomeScreen: React.FC = () => {
       {/* Top Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {/* Card 1: Total Balance / Net Worth */}
-        <div className="p-5 rounded-2xl bg-card-surface border border-theme relative overflow-hidden group">
-          <div className="absolute -right-6 -bottom-6 w-28 h-28 bg-[#EA3B35]/15 rounded-full blur-2xl group-hover:bg-[#EA3B35]/25 transition-all" />
+        <div className="p-5 rounded-2xl glass-card glass-card-interactive relative overflow-hidden group">
+          <div className="absolute -right-6 -bottom-6 w-28 h-28 bg-[#EA3B35]/20 rounded-full blur-2xl group-hover:bg-[#EA3B35]/30 transition-all pointer-events-none" />
           <div className="flex items-center justify-between mb-3">
             <span className="text-xs font-bold text-secondary-var tracking-wide uppercase">Primary Net Balance</span>
-            <div className="p-2 rounded-xl bg-[#EA3B35]/10 text-[#EA3B35] border border-[#EA3B35]/20">
+            <div className="p-2.5 rounded-xl bg-[#EA3B35]/15 text-[#EA3B35] border border-[#EA3B35]/30 shadow-sm">
               <Wallet className="w-4 h-4" />
             </div>
           </div>
           <div className="text-3xl font-extrabold text-primary-var tracking-tight">{formatAmount(totalBalance)}</div>
-          <div className="mt-3 text-[11px] text-secondary-var flex items-center justify-between pt-1 border-t border-theme">
+          <div className="mt-3 text-[11px] text-secondary-var flex items-center justify-between pt-2 border-t border-theme">
             <span>{accounts.length === 0 ? 'No active wallets' : `${includedAccounts.length} active wallet(s)`}</span>
             {accounts.length > 0 ? (
-              <button onClick={() => setIsTransferOpen(true)} className="text-[#EA3B35] hover:underline font-semibold cursor-pointer">
+              <button onClick={() => setIsTransferOpen(true)} className="text-[#EA3B35] hover:underline font-bold cursor-pointer">
                 Transfer &rarr;
               </button>
             ) : (
-              <button onClick={() => setIsAddAccountOpen(true)} className="text-[#EA3B35] hover:underline font-semibold cursor-pointer">
+              <button onClick={() => setIsAddAccountOpen(true)} className="text-[#EA3B35] hover:underline font-bold cursor-pointer">
                 + Create Wallet
               </button>
             )}
@@ -84,15 +84,15 @@ export const HomeScreen: React.FC = () => {
         </div>
 
         {/* Card 2: Remaining Budget Tracker */}
-        <div className="p-5 rounded-2xl bg-card-surface border border-theme relative overflow-hidden">
+        <div className="p-5 rounded-2xl glass-card glass-card-interactive relative overflow-hidden">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center space-x-2">
               <span className="text-xs font-bold text-secondary-var tracking-wide uppercase">Remaining Budget</span>
-              <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#EA3B35]/10 border border-[#EA3B35]/30 text-[#EA3B35] font-bold">
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#EA3B35]/15 border border-[#EA3B35]/30 text-[#EA3B35] font-bold">
                 {settings.budget.periodType}
               </span>
             </div>
-            <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+            <div className="p-2.5 rounded-xl bg-emerald-500/15 text-emerald-500 border border-emerald-500/30 shadow-sm">
               <TrendingUp className="w-4 h-4" />
             </div>
           </div>
@@ -102,7 +102,7 @@ export const HomeScreen: React.FC = () => {
 
           {/* Progress Bar */}
           <div className="mt-3 space-y-1">
-            <div className="w-full h-2.5 bg-sub-surface rounded-full overflow-hidden">
+            <div className="w-full h-2.5 bg-sub-surface/80 rounded-full overflow-hidden p-0.5 border border-theme">
               <div
                 className={`h-full rounded-full transition-all duration-500 ${
                   budgetPercentage > 90 ? 'bg-rose-500' : budgetPercentage > 75 ? 'bg-amber-500' : 'bg-[#EA3B35]'
@@ -118,7 +118,7 @@ export const HomeScreen: React.FC = () => {
         </div>
 
         {/* Card 3: Smart Insights Banner */}
-        <div className="p-5 rounded-2xl bg-card-surface border border-theme flex flex-col justify-between">
+        <div className="p-5 rounded-2xl glass-card glass-card-interactive flex flex-col justify-between">
           <div className="flex items-center space-x-2">
             <Sparkles className="w-4 h-4 text-amber-500" />
             <span className="text-xs font-bold text-primary-var uppercase tracking-wide">Quick Insights</span>
@@ -144,13 +144,13 @@ export const HomeScreen: React.FC = () => {
       {/* Main Section: 7-Day Spending Chart & Quick Spend Hub */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* 7-Day Spending Trend Line Chart */}
-        <div className="lg:col-span-2 p-6 rounded-2xl bg-card-surface border border-theme space-y-4">
+        <div className="lg:col-span-2 p-6 rounded-2xl glass-card space-y-4">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-base font-bold text-primary-var">7-Day Spending Trend</h3>
               <p className="text-xs text-secondary-var">Visual outflow graph matching Android app</p>
             </div>
-            <div className="text-xs font-bold text-[#EA3B35] bg-[#EA3B35]/10 border border-[#EA3B35]/30 px-3 py-1 rounded-xl">
+            <div className="text-xs font-bold text-[#EA3B35] bg-[#EA3B35]/15 border border-[#EA3B35]/30 px-3 py-1 rounded-xl glass-chip">
               7D Outflow: {formatAmount(chartData.reduce((s, c) => s + c.amount, 0))}
             </div>
           </div>
@@ -177,7 +177,7 @@ export const HomeScreen: React.FC = () => {
         </div>
 
         {/* Quick Spend Hub */}
-        <div className="p-6 rounded-2xl bg-card-surface border border-theme space-y-4">
+        <div className="p-6 rounded-2xl glass-card space-y-4">
           <div>
             <h3 className="text-base font-bold text-primary-var">Quick Spend Hub</h3>
             <p className="text-xs text-secondary-var">Tap category to log transaction</p>
@@ -190,7 +190,7 @@ export const HomeScreen: React.FC = () => {
                 <button
                   key={cat.name}
                   onClick={() => setIsAddExpenseOpen(true)}
-                  className={`p-3.5 rounded-xl border ${cat.color} flex flex-col items-center justify-center space-y-2 hover:scale-[1.02] active:scale-95 transition-all cursor-pointer`}
+                  className={`p-3.5 rounded-xl border ${cat.color} glass-chip flex flex-col items-center justify-center space-y-2 hover:scale-[1.03] active:scale-95 transition-all cursor-pointer shadow-sm`}
                 >
                   <Icon className="w-5 h-5" />
                   <span className="text-xs font-bold">{cat.name}</span>
@@ -202,7 +202,7 @@ export const HomeScreen: React.FC = () => {
       </div>
 
       {/* Recent Transactions Section */}
-      <div className="p-6 rounded-2xl bg-card-surface border border-theme space-y-4">
+      <div className="p-6 rounded-2xl glass-card space-y-4">
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-base font-bold text-primary-var">Recent Transactions</h3>
@@ -210,7 +210,7 @@ export const HomeScreen: React.FC = () => {
           </div>
           <button
             onClick={() => setIsAddExpenseOpen(true)}
-            className="px-3.5 py-1.5 rounded-xl bg-[#EA3B35] hover:bg-[#f04b45] text-white text-xs font-bold flex items-center space-x-1 transition-all shadow-md shadow-[#EA3B35]/20 cursor-pointer"
+            className="px-3.5 py-1.5 rounded-xl glass-btn-primary text-white text-xs font-bold flex items-center space-x-1 cursor-pointer"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>Add Transaction</span>
@@ -218,8 +218,8 @@ export const HomeScreen: React.FC = () => {
         </div>
 
         {expenses.length === 0 ? (
-          <div className="py-12 text-center space-y-3 border-2 border-dashed border-theme rounded-2xl">
-            <div className="w-12 h-12 rounded-full bg-sub-surface text-secondary-var mx-auto flex items-center justify-center">
+          <div className="py-12 text-center space-y-3 border-2 border-dashed border-theme rounded-2xl glass-card">
+            <div className="w-12 h-12 rounded-full glass-chip text-secondary-var mx-auto flex items-center justify-center">
               <FolderOpen className="w-6 h-6" />
             </div>
             <div>
@@ -228,7 +228,7 @@ export const HomeScreen: React.FC = () => {
             </div>
             <button
               onClick={() => setIsAddExpenseOpen(true)}
-              className="px-4 py-2 rounded-xl bg-[#EA3B35] hover:bg-[#f04b45] text-white text-xs font-bold shadow-md shadow-[#EA3B35]/20 transition-all cursor-pointer inline-flex items-center space-x-1.5"
+              className="px-4 py-2 rounded-xl glass-btn-primary text-xs font-bold cursor-pointer inline-flex items-center space-x-1.5"
             >
               <Plus className="w-4 h-4" />
               <span>Log First Transaction</span>
@@ -241,11 +241,11 @@ export const HomeScreen: React.FC = () => {
               const isIncome = exp.type === 'INCOME';
 
               return (
-                <div key={exp.id} className="py-3 flex items-center justify-between hover:bg-sub-surface/50 px-2 rounded-xl transition-colors">
+                <div key={exp.id} className="py-3 flex items-center justify-between hover:bg-white/10 dark:hover:bg-white/5 px-3 rounded-xl transition-colors">
                   <div className="flex items-center space-x-3.5">
                     <div
                       className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-                        isIncome ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20' : 'bg-[#EA3B35]/10 text-[#EA3B35] border border-[#EA3B35]/20'
+                        isIncome ? 'bg-emerald-500/15 text-emerald-500 border border-emerald-500/30' : 'bg-[#EA3B35]/15 text-[#EA3B35] border border-[#EA3B35]/30'
                       }`}
                     >
                       {isIncome ? <TrendingUp className="w-5 h-5" /> : <TrendingDown className="w-5 h-5" />}
@@ -255,7 +255,7 @@ export const HomeScreen: React.FC = () => {
                       <div className="flex items-center space-x-2 text-xs text-secondary-var">
                         <span>{exp.category}</span>
                         <span>•</span>
-                        <span className="px-1.5 py-0.5 rounded bg-sub-surface border border-theme" style={{ color: acc?.colorHex || 'var(--text-primary)' }}>
+                        <span className="px-1.5 py-0.5 rounded glass-chip" style={{ color: acc?.colorHex || 'var(--text-primary)' }}>
                           {acc?.name || 'Cash'}
                         </span>
                         <span>•</span>

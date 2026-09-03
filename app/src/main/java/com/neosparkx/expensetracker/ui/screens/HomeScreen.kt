@@ -2,6 +2,10 @@
 
 package com.neosparkx.expensetracker.ui.screens
 
+import com.neosparkx.expensetracker.MainActivity
+import com.neosparkx.expensetracker.BuildConfig
+import com.neosparkx.expensetracker.update.UpdateState
+import kotlinx.coroutines.flow.MutableStateFlow
 import com.neosparkx.expensetracker.data.Account
 import com.neosparkx.expensetracker.data.PlannedTransaction
 import android.widget.Toast
@@ -668,6 +672,68 @@ fun HomeScreen(viewModel: MainViewModel, activity: FragmentActivity) {
             }
         }
 
+        val mainActivity = activity as? MainActivity
+        val currentUpdateState by (mainActivity?.updateState ?: remember { MutableStateFlow(UpdateState.Idle) }).collectAsState()
+
+        // Floating In-App Update Ready Banner
+        AnimatedVisibility(
+            visible = currentUpdateState is UpdateState.Downloaded,
+            enter = slideInVertically { it } + fadeIn(),
+            exit = slideOutVertically { it } + fadeOut(),
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .navigationBarsPadding()
+                .padding(bottom = 96.dp, start = 16.dp, end = 16.dp)
+        ) {
+            Card(
+                shape = RoundedCornerShape(20.dp),
+                colors = CardDefaults.cardColors(containerColor = CardSurface),
+                elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Row(
+                        modifier = Modifier.weight(1f),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            imageVector = Icons.Rounded.SystemUpdate,
+                            contentDescription = "Update Ready",
+                            tint = PrimaryAccent,
+                            modifier = Modifier.size(28.dp)
+                        )
+                        Spacer(modifier = Modifier.width(12.dp))
+                        Column {
+                            Text(
+                                text = "Update Ready to Install",
+                                style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold),
+                                color = TextPrimary
+                            )
+                            Text(
+                                text = "Restart now to apply the new version.",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = TextSecondary
+                            )
+                        }
+                    }
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Button(
+                        onClick = { mainActivity?.completeAppUpdate() },
+                        colors = ButtonDefaults.buttonColors(containerColor = PrimaryAccent, contentColor = Color.White),
+                        shape = RoundedCornerShape(12.dp),
+                        contentPadding = PaddingValues(horizontal = 14.dp, vertical = 8.dp)
+                    ) {
+                        Text("Restart", fontWeight = FontWeight.Bold, fontSize = 12.sp)
+                    }
+                }
+            }
+        }
 
         // Dimming overlay when Floating Choices menu is shown
         AnimatedVisibility(
@@ -5128,7 +5194,7 @@ fun ProfileTab(
     }
 
     val exportLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.CreateDocument("application/vnd.ms-excel")
+        contract = ActivityResultContracts.CreateDocument("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
     ) { uri: Uri? ->
         if (uri != null) {
             coroutineScope.launch(Dispatchers.IO) {
@@ -5242,7 +5308,7 @@ fun ProfileTab(
                                 "• Biometric Sensor (USE_BIOMETRIC): Used strictly to secure your app access locally. No biometric data is ever stored or read by the App.\n" +
                                 "• Notifications (POST_NOTIFICATIONS): Used locally to send daily reminders to log your expenses.\n\n" +
                                 "3. Data Portability\n" +
-                                "Exporting to Excel (using Apache POI) and printing PDF invoices are processed entirely on-device. The App uses Android's System File Picker (GetContent/CreateDocument) to read/write specific files. We do not request broad storage access.\n\n" +
+                                "Exporting to Excel and printing PDF invoices are processed entirely on-device. The App uses Android's System File Picker (GetContent/CreateDocument) to read/write specific files. We do not request broad storage access.\n\n" +
                                 "4. Children's Privacy\n" +
                                 "Since we do not collect any personal data, we do not process data from children.\n\n" +
                                 "5. Changes to this Policy\n" +
@@ -5929,6 +5995,137 @@ fun ProfileTab(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Column(modifier = Modifier.padding(20.dp)) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Row(
+                            modifier = Modifier.weight(1f),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                imageVector = Icons.Rounded.SystemUpdate,
+                                contentDescription = "App Updates",
+                                tint = PrimaryAccent,
+                                modifier = Modifier.size(28.dp)
+                            )
+                            Spacer(modifier = Modifier.width(12.dp))
+                            Column {
+                                Text(
+                                    text = "App Updates",
+                                    style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold),
+                                    color = TextPrimary
+                                )
+                                Text(
+                                    text = "Version ${BuildConfig.VERSION_NAME} (Build ${BuildConfig.VERSION_CODE})",
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = TextSecondary
+                                )
+                            }
+                        }
+
+                        var isCheckingUpdate by remember { mutableStateOf(false) }
+                        val mainActivity = activity as? MainActivity
+
+                        Button(
+                            onClick = {
+                                isCheckingUpdate = true
+                                mainActivity?.checkAppUpdate(isManual = true) { _, message ->
+                                    isCheckingUpdate = false
+                                    Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+                                }
+                            },
+                            enabled = !isCheckingUpdate,
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = PrimaryAccent,
+                                contentColor = Color.White
+                            ),
+                            shape = RoundedCornerShape(12.dp),
+                            contentPadding = PaddingValues(horizontal = 14.dp, vertical = 8.dp)
+                        ) {
+                            if (isCheckingUpdate) {
+                                CircularProgressIndicator(
+                                    color = Color.White,
+                                    modifier = Modifier.size(16.dp),
+                                    strokeWidth = 2.dp
+                                )
+                            } else {
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                                ) {
+                                    Icon(
+                                        Icons.Rounded.Update,
+                                        contentDescription = "Check Updates",
+                                        modifier = Modifier.size(16.dp)
+                                    )
+                                    Text("Check", fontWeight = FontWeight.Bold, fontSize = 12.sp)
+                                }
+                            }
+                        }
+                    }
+
+                    val mainActivity = activity as? MainActivity
+                    val currentUpdateState by (mainActivity?.updateState ?: remember { MutableStateFlow(UpdateState.Idle) }).collectAsState()
+                    when (currentUpdateState) {
+                        is UpdateState.Downloading -> {
+                            val downloadingState = currentUpdateState as UpdateState.Downloading
+                            val progress = if (downloadingState.totalBytes > 0) {
+                                (downloadingState.bytesDownloaded.toFloat() / downloadingState.totalBytes.toFloat()).coerceIn(0f, 1f)
+                            } else 0f
+                            Spacer(modifier = Modifier.height(14.dp))
+                            Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                                Text(
+                                    text = "Downloading update... ${(progress * 100).toInt()}%",
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = PrimaryAccent,
+                                    fontWeight = FontWeight.SemiBold
+                                )
+                                LinearProgressIndicator(
+                                    progress = { progress },
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(6.dp)
+                                        .clip(RoundedCornerShape(3.dp)),
+                                    color = PrimaryAccent,
+                                    trackColor = ThemeBackground
+                                )
+                            }
+                        }
+                        is UpdateState.Downloaded -> {
+                            Spacer(modifier = Modifier.height(14.dp))
+                            Button(
+                                onClick = { mainActivity?.completeAppUpdate() },
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = Color(0xFF4CAF50),
+                                    contentColor = Color.White
+                                ),
+                                modifier = Modifier.fillMaxWidth(),
+                                shape = RoundedCornerShape(12.dp)
+                            ) {
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                                ) {
+                                    Icon(Icons.Rounded.CheckCircle, contentDescription = null)
+                                    Text("Update Downloaded - Restart to Install", fontWeight = FontWeight.Bold)
+                                }
+                            }
+                        }
+                        else -> {}
+                    }
+                }
+            }
+        }
+
+        item {
+            Card(
+                shape = RoundedCornerShape(24.dp),
+                colors = CardDefaults.cardColors(containerColor = CardSurface),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Column(modifier = Modifier.padding(20.dp)) {
                     Text(
                         text = "Account Management",
                         style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
@@ -6209,14 +6406,14 @@ fun ProfileTab(
                         onClick = {
                             showExportFormatDialog = false
                             onRequestStoragePermission {
-                                exportLauncher.launch("expenses_and_debts_export.xls")
+                                exportLauncher.launch("expenses_and_debts_export.xlsx")
                             }
                         },
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(12.dp),
                         colors = ButtonDefaults.buttonColors(containerColor = CardSurface, contentColor = TextPrimary)
                     ) {
-                        Text("Excel Spreadsheet (.xls)", fontWeight = FontWeight.Bold)
+                        Text("Excel Spreadsheet (.xlsx)", fontWeight = FontWeight.Bold)
                     }
                 }
             },

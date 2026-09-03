@@ -36,7 +36,8 @@
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true
-    }
+    },
+    "publish": null
   },
   "dependencies": {
     "canvas-confetti": "^1.9.4",

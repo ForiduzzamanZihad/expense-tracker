@@ -27,13 +27,13 @@ export const AccountDetailsModal: React.FC = () => {
   const totalOutflow = walletExpenses.filter(e => e.type === 'EXPENSE').reduce((sum, e) => sum + e.amount, 0);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm p-4 select-none">
-      <div className="w-full max-w-xl rounded-2xl bg-card-surface border border-theme p-6 space-y-5 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/65 backdrop-blur-md p-4 select-none animate-in fade-in duration-200">
+      <div className="w-full max-w-xl rounded-2xl glass-modal border border-theme p-6 space-y-5 shadow-2xl animate-in zoom-in-95 duration-200">
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-theme">
           <div className="flex items-center space-x-3">
             <div
-              className="w-10 h-10 rounded-xl flex items-center justify-center"
+              className="w-10 h-10 rounded-xl flex items-center justify-center shadow-sm"
               style={{ backgroundColor: `${account.colorHex || '#EA3B35'}25`, color: account.colorHex || '#EA3B35' }}
             >
               <Wallet className="w-5 h-5" />
@@ -46,20 +46,20 @@ export const AccountDetailsModal: React.FC = () => {
 
           <button
             onClick={() => setSelectedAccountForDetails(null)}
-            className="p-1 rounded-lg text-secondary-var hover:text-primary-var hover:bg-sub-surface transition-colors cursor-pointer"
+            className="p-1.5 rounded-xl text-secondary-var hover:text-primary-var glass-btn-secondary transition-colors cursor-pointer"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Stats Summary Row */}
         <div className="grid grid-cols-3 gap-3">
-          <div className="p-3.5 rounded-xl bg-sub-surface border border-theme">
+          <div className="p-3.5 rounded-xl glass-card border border-theme">
             <span className="text-[10px] font-bold text-secondary-var uppercase tracking-wide">Current Balance</span>
             <div className="text-lg font-extrabold text-primary-var mt-0.5">{formatAmount(account.currentBalance)}</div>
           </div>
 
-          <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+          <div className="p-3.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30">
             <span className="text-[10px] font-bold text-emerald-500 uppercase tracking-wide flex items-center space-x-1">
               <TrendingUp className="w-3 h-3" />
               <span>Total Inflow</span>
@@ -67,7 +67,7 @@ export const AccountDetailsModal: React.FC = () => {
             <div className="text-lg font-extrabold text-emerald-500 mt-0.5">{formatAmount(totalInflow)}</div>
           </div>
 
-          <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/20">
+          <div className="p-3.5 rounded-xl bg-rose-500/15 border border-rose-500/30">
             <span className="text-[10px] font-bold text-rose-500 uppercase tracking-wide flex items-center space-x-1">
               <TrendingDown className="w-3 h-3" />
               <span>Total Outflow</span>
@@ -83,7 +83,7 @@ export const AccountDetailsModal: React.FC = () => {
               setSelectedAccountForDetails(null);
               setIsAddExpenseOpen(true);
             }}
-            className="flex-1 py-2.5 px-3 rounded-xl bg-[#EA3B35] hover:bg-[#f04b45] text-white text-xs font-bold flex items-center justify-center space-x-1.5 transition-all shadow-md shadow-[#EA3B35]/20 cursor-pointer"
+            className="flex-1 py-2.5 px-3 rounded-xl glass-btn-primary text-xs font-bold flex items-center justify-center space-x-1.5 cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             <span>Log Transaction to Wallet</span>
@@ -94,7 +94,7 @@ export const AccountDetailsModal: React.FC = () => {
               setSelectedAccountForDetails(null);
               setIsTransferOpen(true);
             }}
-            className="flex-1 py-2.5 px-3 rounded-xl bg-sub-surface hover:bg-theme-main text-primary-var border border-theme text-xs font-bold flex items-center justify-center space-x-1.5 transition-colors cursor-pointer"
+            className="flex-1 py-2.5 px-3 rounded-xl glass-btn-secondary text-primary-var text-xs font-bold flex items-center justify-center space-x-1.5 cursor-pointer"
           >
             <ArrowRightLeft className="w-4 h-4 text-[#EA3B35]" />
             <span>Transfer Funds</span>
@@ -119,10 +119,10 @@ export const AccountDetailsModal: React.FC = () => {
               {walletExpenses.map(exp => {
                 const isIncome = exp.type === 'INCOME';
                 return (
-                  <div key={exp.id} className="py-2.5 flex items-center justify-between px-2 hover:bg-sub-surface rounded-lg transition-colors">
+                  <div key={exp.id} className="py-2.5 flex items-center justify-between px-2 hover:bg-white/10 dark:hover:bg-white/5 rounded-lg transition-colors">
                     <div className="flex items-center space-x-3">
                       <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                        isIncome ? 'bg-emerald-500/10 text-emerald-500' : 'bg-rose-500/10 text-rose-500'
+                        isIncome ? 'bg-emerald-500/15 text-emerald-500' : 'bg-rose-500/15 text-rose-500'
                       }`}>
                         {isIncome ? <TrendingUp className="w-4 h-4" /> : <TrendingDown className="w-4 h-4" />}
                       </div>
