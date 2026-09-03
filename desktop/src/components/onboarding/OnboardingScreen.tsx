@@ -8,14 +8,14 @@ export const OnboardingScreen: React.FC = () => {
   const { completeOnboarding } = useApp();
 
   const [currentSlide, setCurrentSlide] = useState<number>(0);
-  const [userNameInput, setUserNameInput] = useState<string>('Captain');
+  const [userNameInput, setUserNameInput] = useState<string>('');
   const [currencyInput, setCurrencyInput] = useState<string>('৳');
 
   // Wallet Setup Form State
-  const [walletName, setWalletName] = useState<string>('Main Bank Account');
-  const [bankName, setBankName] = useState<string>('Primary Bank');
+  const [walletName, setWalletName] = useState<string>('');
+  const [bankName, setBankName] = useState<string>('');
   const [cardType, setCardType] = useState<AccountType>('bank');
-  const [startingBalance, setStartingBalance] = useState<string>('5000');
+  const [startingBalance, setStartingBalance] = useState<string>('');
 
   // GSAP Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -82,15 +82,18 @@ export const OnboardingScreen: React.FC = () => {
   };
 
   const handleFinish = () => {
+    const hasWallet = walletName.trim().length > 0;
     completeOnboarding(
       userNameInput.trim() || 'User',
       currencyInput,
-      {
-        name: walletName.trim() || 'Main Account',
-        bankName: bankName.trim() || 'Primary Bank',
-        cardType,
-        startingBalance: parseFloat(startingBalance) || 0
-      }
+      hasWallet
+        ? {
+            name: walletName.trim(),
+            bankName: bankName.trim() || 'Primary Bank',
+            cardType,
+            startingBalance: parseFloat(startingBalance) || 0
+          }
+        : undefined
     );
   };
 

@@ -1,7 +1,7 @@
 {
   "name": "desktop",
   "private": true,
-  "version": "0.0.0",
+  "version": "3.0.0",
   "type": "module",
   "main": "electron/main.cjs",
   "scripts": {
@@ -15,6 +15,9 @@
   "build": {
     "appId": "com.neosparkx.expensetracker.desktop",
     "productName": "Expense Tracker Desktop",
+    "directories": {
+      "output": "release"
+    },
     "files": [
       "dist/**/*",
       "electron/**/*",
