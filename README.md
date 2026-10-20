@@ -12,15 +12,17 @@
   <!-- Active CTAs -->
   <p align="center">
     <a href="https://play.google.com/store/apps/details?id=com.neosparkx.expensetracker" target="_blank">
-      <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" 
+      <img src="assets/google-play-badge.png" 
            alt="Get it on Google Play" 
-           height="72">
+           height="54"
+           align="middle" />
     </a>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <a href="https://neosparkx.com/products/expense-tracker" target="_blank">
-      <img src="https://img.shields.io/badge/💻_Download_Desktop_App-Windows_Installer_%26_Portable-0969da?style=for-the-badge&logo=windows11&logoColor=white" 
-           alt="Download Desktop App" 
-           height="46">
+      <img src="assets/download-desktop.png" 
+           alt="Download for Desktop Setup (v3.0.0)" 
+           height="54"
+           align="middle" />
     </a>
   </p>
 
@@ -70,8 +72,8 @@ Choose your preferred platform to start tracking your finances offline:
 
 | Platform | Channel / Download | Format | Description |
 | :--- | :--- | :--- | :--- |
-| **Android (Mobile)** | [![Google Play](https://img.shields.io/badge/Google_Play-Install-34A853?style=for-the-badge&logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.neosparkx.expensetracker) | Store (`.aab`) | Official Google Play release with automatic in-app updates. Requires Android 8.0+. |
-| **Windows (Desktop)** | [![Download Desktop App](https://img.shields.io/badge/NeoSparkX-Download_Desktop-0969da?style=for-the-badge&logo=windows11&logoColor=white)](https://neosparkx.com/products/expense-tracker) | `.exe` (Installer & Portable) | Full-featured desktop workspace with large-screen charts, instant Excel/JSON sync, and zero cloud dependency. |
+| **Android (Mobile)** | <a href="https://play.google.com/store/apps/details?id=com.neosparkx.expensetracker" target="_blank"><img src="assets/google-play-badge.png" height="38" alt="Google Play" /></a> | Store (`.aab`) | Official Google Play release with automatic in-app updates. Requires Android 8.0+. |
+| **Windows (Desktop)** | <a href="https://neosparkx.com/products/expense-tracker" target="_blank"><img src="assets/download-desktop.png" height="38" alt="Download Desktop Setup" /></a> | `.exe` (Installer & Portable) | Full-featured desktop workspace with large-screen charts, instant Excel/JSON sync, and zero cloud dependency. |
 | **Android (Direct APK)** | [![GitHub Releases](https://img.shields.io/badge/GitHub_Releases-Download_APK-blue?style=for-the-badge&logo=github)](https://github.com/nabil24024004/expense-tracker/releases) | `.apk` (Direct) | Direct sideload release for de-Googled devices or offline installations. |
 | **macOS & Linux** | *Coming Soon* | `.dmg` / `.AppImage` | Under active packaging. Join the [collaboration](#-open-for-collaboration--contributing) to help test! |
 
