@@ -110,13 +110,11 @@ dependencies {
   implementation(libs.kotlinx.coroutines.android)
   implementation(libs.kotlinx.coroutines.core)
 
-  // New dependencies
   implementation("androidx.fragment:fragment-ktx:1.6.2")
   implementation(libs.androidx.biometric)
   implementation(libs.vico.compose)
   implementation(libs.vico.compose.m3)
   implementation(libs.vico.core)
-
 
   testImplementation(libs.androidx.compose.ui.test.junit4)
   testImplementation(libs.androidx.core)
@@ -136,4 +134,3 @@ dependencies {
   debugImplementation(libs.androidx.compose.ui.tooling)
   "ksp"(libs.androidx.room.compiler)
 }
-
