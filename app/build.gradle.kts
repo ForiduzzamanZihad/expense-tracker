@@ -9,7 +9,7 @@ plugins {
 
 android {
   namespace = "com.neosparkx.expensetracker"
-  compileSdk { version = release(36) { minorApiLevel = 1 } }
+  compileSdk = 36
 
   defaultConfig {
     applicationId = project.findProperty("android.injected.applicationId")?.toString() ?: "com.neosparkx.expensetracker"
