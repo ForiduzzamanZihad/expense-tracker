@@ -117,9 +117,6 @@ dependencies {
   implementation(libs.vico.compose.m3)
   implementation(libs.vico.core)
 
-  // Google Play In-App Updates
-  implementation("com.google.android.play:app-update:2.1.0")
-  implementation("com.google.android.play:app-update-ktx:2.1.0")
 
   testImplementation(libs.androidx.compose.ui.test.junit4)
   testImplementation(libs.androidx.core)
