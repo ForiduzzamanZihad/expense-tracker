@@ -5268,7 +5268,7 @@ fun ProfileTab(
                 TextButton(
                     onClick = {
                         try {
-                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://neosparkx.com/products/expense-tracker/privacy-policy"))
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/ForiduzzamanZihad/expense-trackerproducts/expense-tracker/privacy-policy"))
                             context.startActivity(intent)
                         } catch (e: Exception) {
                             Toast.makeText(context, "Could not open link", Toast.LENGTH_SHORT).show()
@@ -6009,7 +6009,7 @@ fun ProfileTab(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = "Azwad Abrar Nabil",
+                        text = "Foriduzzaman Zihad",
                         style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Black),
                         color = TextPrimary
                     )
@@ -6017,7 +6017,7 @@ fun ProfileTab(
                     Spacer(modifier = Modifier.height(4.dp))
                     
                     Text(
-                        text = "Developed & Created by Azwad Abrar Nabil",
+                        text = "Developed & Created by Foriduzzaman Zihad",
                         textAlign = TextAlign.Center,
                         style = MaterialTheme.typography.bodySmall,
                         color = TextSecondary
@@ -6033,7 +6033,7 @@ fun ProfileTab(
                         TextButton(
                             onClick = {
                                 try {
-                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/nabil24024004"))
+                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/ForiduzzamanZihad"))
                                     context.startActivity(intent)
                                 } catch (e: Exception) {
                                     Toast.makeText(context, "Could not open GitHub link", Toast.LENGTH_SHORT).show()
@@ -6064,7 +6064,7 @@ fun ProfileTab(
                         TextButton(
                             onClick = {
                                 try {
-                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://neosparkx.com/"))
+                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/ForiduzzamanZihad/expense-tracker"))
                                     context.startActivity(intent)
                                 } catch (e: Exception) {
                                     Toast.makeText(context, "Could not open portfolio link", Toast.LENGTH_SHORT).show()
@@ -6096,7 +6096,7 @@ fun ProfileTab(
                             onClick = {
                                 try {
                                     val intent = Intent(Intent.ACTION_SENDTO).apply {
-                                        data = Uri.parse("mailto:azwadabrar109@gmail.com")
+                                        data = Uri.parse("https://github.com/ForiduzzamanZihad")
                                     }
                                     context.startActivity(intent)
                                 } catch (e: Exception) {
@@ -6148,12 +6148,12 @@ fun ProfileTab(
                     Spacer(modifier = Modifier.width(4.dp))
                     val copyrightText = buildAnnotatedString {
                         append("Copyright ")
-                        pushStringAnnotation(tag = "URL", annotation = "https://neosparkx.com")
+                        pushStringAnnotation(tag = "URL", annotation = "https://github.com/ForiduzzamanZihad")
                         withStyle(SpanStyle(fontWeight = FontWeight.Bold, color = PrimaryAccent)) {
-                            append("NeoSparkX")
+                            append("Foriduzzaman Zihad")
                         }
                         pop()
-                        append(". All rights reserved.")
+                        append(" • Personal offline build")
                     }
                     ClickableText(
                         text = copyrightText,
