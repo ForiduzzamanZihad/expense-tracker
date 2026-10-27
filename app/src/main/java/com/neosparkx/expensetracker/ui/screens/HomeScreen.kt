@@ -6095,9 +6095,7 @@ fun ProfileTab(
                         TextButton(
                             onClick = {
                                 try {
-                                    val intent = Intent(Intent.ACTION_SENDTO).apply {
-                                        data = Uri.parse("https://github.com/ForiduzzamanZihad")
-                                    }
+                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/ForiduzzamanZihad"))
                                     context.startActivity(intent)
                                 } catch (e: Exception) {
                                     Toast.makeText(context, "Could not launch email app", Toast.LENGTH_SHORT).show()
